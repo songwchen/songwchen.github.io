@@ -1,0 +1,99 @@
+body {
+    font-family: Microsoft JhengHei, Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    line-height: 1.5em;
+}
+
+.wrap {
+    width: 1200px;
+    display: flex;
+    margin: auto;
+    /* border: #f00 1px solid; */
+    border-top: #ccc 1px solid;
+}
+
+.wrap:first-child{
+    border: none;
+}
+
+.box {
+    margin: 20px 10px;
+    
+}
+
+.productPic {
+    width: 100%;
+}
+
+.slogan {
+    font-size: 12px;
+    line-height: 1.4em;
+    height: 1.5em;
+    text-indent: 1em;
+    color: #e00101;
+}
+
+h1 {
+    margin: 0 0 1em;
+}
+
+h2 {
+    font-size: 20px;
+    color: mediumvioletred;
+}
+
+.symbol {
+    font-size: 12px;
+}
+
+.ifDiscount{
+    margin: 5px;
+}
+
+.star, .ratingCounts {
+    align-items: center;
+    text-align: center;
+}
+
+.star {
+    height: 12px;
+}
+
+.ifDiscount, .ratingCounts {
+    font-size: 12px;
+    color: #aaa;
+}
+
+.soldCounts{
+    font-size: 12px;
+}
+
+.note {
+    line-height: 2em;
+    background-color: #eee;
+    padding: 0px 6px 0px 0px;
+    text-align: right;
+}
+
+.informMe {
+    color: #888;
+    font-weight: 900;
+    text-align: center;
+}
+
+.quick, .gift, .register{
+    font-size: 12px;
+    padding: 2px 4px;
+    border-radius: 15%;
+    color: #fff;
+    height: 2em;
+    vertical-align: middle;
+}
+
+.quick{
+    background-color:#ad0505;
+}
+
+.gift, .register{
+    background-color:#eb0295;
+}
