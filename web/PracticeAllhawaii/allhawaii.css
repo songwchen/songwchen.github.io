@@ -1,5 +1,5 @@
 body {
-	font-family: YakuHanJP, sans-serif, serif;
+	font-family: YakuHanJP, 'Noto Sans JP', sans-serif;
 	line-height: 1.4;
 }
 
@@ -75,7 +75,7 @@ h3{
 
 h2 .jp{
 	font-size: 26px;
-	font-weight: 900;
+	font-weight: 700;
 }
 
 h2 .en{
@@ -86,7 +86,7 @@ h2 .en{
 .width{
 	max-width: 1200px;
 	min-width: 960px;
-	margin: auto;
+	margin: auto;	
 }
 
 .wrap{
