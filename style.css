@@ -20,10 +20,6 @@ section:first-child{
 	margin-top: 100px;
 }
 
-section + section{
-
-}
-
 .wrap {
 	/* outline: #f00 1px solid; */
 	width: 1200px;
@@ -57,7 +53,7 @@ section + section{
 
 a > img {
 	width: 250px;
-	/* outline: #f00 1px solid; */
+	border-radius: 10px 10px 10px 0px;
 }
 
 a {
