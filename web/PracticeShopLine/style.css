@@ -4,12 +4,30 @@ body {
 	line-height: 1.5;
 }
 
+nav{
+	padding: 20px 0px;
+}
+
+nav a{
+	color: #333;
+	border: 1px solid #bbb;
+	text-decoration: none;
+	padding: 5px 10px;
+	border-radius: 5px;
+	display: inline-block;
+}
+
+nav span:first-child{
+	margin-right: 10px;
+}
+
 section {
 	width: 100vw;
 	padding: 64px 0px;
 	background-color: #fff;
 }
 
+nav,
 .slogan,
 .more {
 	background-color: #f7f8f9;
@@ -92,7 +110,7 @@ a {
 	height: 26px;
 }
 
-a :first-child {
+.content a :first-child {
 	display: inline-block;
 	border-bottom: 2px solid;
 }

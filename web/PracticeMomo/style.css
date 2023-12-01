@@ -4,6 +4,23 @@ body {
     line-height: 1.5em;
 }
 
+nav{
+	margin: 20px 0px;
+}
+
+nav > a{
+	color: #333;
+	border: 1px solid #bbb;
+	text-decoration: none;
+	padding: 5px 10px;
+	border-radius: 5px;
+	display: inline-block;
+}
+
+nav span:first-child{
+	margin-right: 10px;
+}
+
 .wrap {
     width: 1200px;
     display: flex;
