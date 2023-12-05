@@ -120,7 +120,7 @@ a:not(nav > a)::after {
 	padding: 15px 20px 5px;
 	box-sizing: border-box;
 	background-color: #eee;
-	margin: -25px 0px 0px 50px;
+	margin: -29px 0px 0px 50px;
 	position: relative;
 	z-index: 2;
 }
@@ -140,9 +140,9 @@ hr {
 	display: inline-block;
 	flex-grow: 1;
 	border: none;
-	border-top: 1px solid #b01;
+	border-top: 1.5px solid #b01;
 	margin-left: 10px;
-	margin-top: 10px;
+	margin-top: 13px;
 }
 
 .content>h4 {
