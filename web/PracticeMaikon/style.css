@@ -11,18 +11,28 @@ body {
 	margin: 100px auto;
 }
 
+section{
+	position: relative;
+}
+
 .navWrap {
 	margin-top: 0px;
 }
 
-body>section:first-child {
+.navSection {
 	position: fixed;
-	top: 0px;
+	z-index: 1;
+	top: 0;
 	left: 50%;
 	transform: translateX(-50%);
 	width: 100%;
 	height: 90px;
 	background-color: #fff;
+	transition: box-shadow .3s ease;
+}
+
+.navSection.shadow{
+	box-shadow: 0 5px 30px #eee;
 }
 
 body>section:nth-child(2) {
@@ -51,7 +61,7 @@ nav a {
 }
 
 .button {
-	padding: 12px 22px 10px;
+	padding: 13px 22px 11px;
 	border-radius: 5px;
 	font-weight: 700;
 }
@@ -71,7 +81,6 @@ nav .whiteToGreen {
 .whiteToGreen:hover {
 	transition: .3s ease;
 	color: #fff;
-	background-color: #1fde82;
 }
 
 .wrapLR {
@@ -125,6 +134,7 @@ p {
 .wrapLRImg {
 	flex-grow: 1;
 	text-align: center;
+	position: relative;
 }
 
 h2 {
@@ -147,11 +157,14 @@ h2 {
 	margin-top: 20px;
 }
 
-.oneOfSixCards img {
-	object-fit: none;
+.glowGreenCircle {
+	object-fit: scale-down;
 	display: inline-block;
 	border-radius: 50%;
 	box-shadow: 0px 5px 30px 0px #93ebc0;
+}
+
+.oneOfSixCards img {
 	margin-bottom: 40px;
 }
 
@@ -192,7 +205,7 @@ h3 {
 }
 
 .blueSectionFourCards p {
-	margin-bottom: 15px;
+	margin: -10px 0px 10px;
 }
 
 .blueSectionOneOfFourCards {
@@ -218,8 +231,325 @@ h3 {
 	border: #fff 1px solid;
 }
 
-.blueToGreen:hover{
+.blueToGreen:hover {
 	background-color: #1fde82;
 	border: transparent 1px solid;
 	transition: .3s ease;
+}
+
+.flowChartWrap {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.flowChartStep {
+	display: flex;
+	align-items: center;
+	position: relative;
+}
+
+.flowChartStep {
+	margin-top: 40px;
+}
+
+.arrow {
+	position: absolute;
+}
+
+.flowChartText {
+	display: flex;
+	align-items: start;
+}
+
+.flowChartText>div {
+	display: flex;
+	flex-direction: column;
+	align-self: top;
+}
+
+.flowChartText h3 {
+	width: 300px;
+}
+
+.flowChartText .glowGreenCircle {
+	margin-right: 40px;
+}
+
+.flowChartText p {
+	width: 410px;
+	margin-bottom: 0;
+}
+
+.flowChartWrap>.flowChartStep:nth-child(odd) {
+	left: -3%;
+}
+
+.flowChartWrap>.flowChartStep:nth-child(odd) .flowChartImg {
+	margin-right: 100px;
+}
+
+.flowChartWrap>.flowChartStep:nth-child(even) {
+	flex-direction: row-reverse;
+	right: -7%;
+}
+
+.flowChartWrap>.flowChartStep:nth-child(even) .flowChartImg {
+	margin-left: 40px;
+}
+
+.flowChartWrap>.flowChartStep:nth-child(1) .arrow {
+	top: 77%;
+	right: 61%;
+}
+
+.flowChartWrap>.flowChartStep:nth-child(2) .arrow {
+	top: 72%;
+	left: 6%;
+}
+
+.flowChartWrap>.flowChartStep:nth-child(3) .arrow {
+	top: 83%;
+	right: 50%;
+}
+
+.flowChartWrap>.flowChartStep:nth-child(4) .arrow {
+	top: 73%;
+	left: 6%;
+}
+
+.flowChartWrap>.flowChartStep:nth-child(4) {
+	margin-top: 80px;
+	right: -6%;
+}
+
+.flowChartWrap>.flowChartStep:nth-child(5) {
+	margin-top: 100px;
+	left: 3%;
+	align-items: start;
+}
+
+.graySection {
+	background-color: #f9fbff;
+}
+
+.graySection>.width {
+	padding: 80px 0px;
+}
+
+.threeCardsWrap>div:first-child {
+	display: flex;
+	justify-content: space-between;
+	align-items: end;
+}
+
+.threeCardsWrap h2 {
+	margin: 0;
+}
+
+.threeCards {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 30px;
+	margin-top: 50px;
+}
+
+.oneOfThreeCards {
+	color: #fff;
+	background-color: #1fde82;
+	border-radius: 15px;
+	height: 415px;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: start;
+	flex-grow: 1;
+}
+
+.oneOfThreeCards img {
+	position: absolute;
+	border-radius: 13px;
+	z-index: 1;
+	width: 100%;
+}
+
+.oneOfThreeCards img:hover {
+	opacity: 0;
+	transition: .5s ease;
+}
+
+.oneOfThreeCards div {
+	height: 100%;
+	padding: 70px 30px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.oneOfThreeCards h3 {
+	font-size: 40px;
+}
+
+.oneOfThreeCards a {
+	text-decoration: none;
+	color: #fff;
+	font-weight: 500;
+}
+
+.consulation {
+	gap: 100px;
+	justify-content: center;
+}
+
+.consulationInput {
+	display: flex;
+	flex-direction: column;
+	width: 360px;
+	padding: 60px;
+	border-radius: 15px;
+	box-shadow: 0px 5px 20px #ddd;
+}
+
+input,
+textarea {
+	font-size: 14px;
+	width: 100%;
+	padding: 12px 16px 10px;
+	margin: 0px 0px 10px;
+	box-sizing: border-box;
+	border: #ddd 1px solid;
+	border-radius: 5px;
+}
+
+textarea {
+	height: 90px;
+}
+
+input::placeholder,
+textarea::placeholder {
+	font-family: 'Roboto';
+	color: #ccc;
+}
+
+input:focus,
+textarea:focus {
+	outline: #ddd 1px solid;
+	border: #ddd 1px solid;
+}
+
+.subscribeWrap {
+	flex-direction: column;
+	gap: 0;
+}
+
+.subscribeWrap h2 {
+	text-align: center;
+}
+
+.subscribeWrap>div {
+	display: flex;
+	position: relative;
+}
+
+.subscribeWrap input {
+	width: 570px;
+	margin: 0;
+}
+
+.subscribeWrap .glowGreenToGray {
+	position: absolute;
+	right: 0%;
+}
+
+.footerWrap {
+	display: flex;
+	justify-content: space-between;
+}
+
+.footerWrap>div {
+	width: 270px;
+	display: flex;
+	flex-direction: column;
+}
+
+.footerLogo {
+	width: 158px;
+	margin-bottom: 50px;
+}
+
+.footerContactInfo a {
+	text-decoration: none;
+	color: inherit;
+	font-weight: 300;
+}
+
+.footerContactInfo a+a {
+	margin-top: 10px;
+}
+
+.footerContactInfo span {
+	color: #1fde82;
+	font-weight: 700;
+	margin-right: 15px;
+}
+
+.footerWrap .contactIcons {
+	display: flex;
+	flex-direction: row;
+	margin-top: 25px;
+}
+
+.contactIcons img {
+	width: 38px;
+}
+
+.footerWrap h3 {
+	margin-bottom: 35px;
+}
+
+ul{
+	margin-top: 14px;
+}
+
+li {
+	font-size: 14px;
+	font-weight: 300;
+	line-height: 1.7;
+}
+
+li+li {
+	margin-top: 7px;
+}
+
+.asset2BG{
+	position: absolute;
+	z-index: -1;
+	top: -20px;
+}
+
+.sec1LeftBG{
+	position: absolute;
+	top: 600px;
+	left: 0;
+	z-index: -1;
+}
+
+.sec2RightBG{
+	position: absolute;
+	top: -50px;
+	right: -50px;
+	z-index: -1;
+}
+
+.cloudI{
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.cloudIGray{
+	width: 200px;
+	height: 40px;
+	border-radius: 20px;
+	background-color: #ccc;
+
 }
