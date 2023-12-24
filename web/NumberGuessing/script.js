@@ -15,7 +15,7 @@ const setAnswer = function () {
 }
 
 const setInputRange = function () {
-    rangeDiv.innerText = `${minInput.toString().padStart(2,'0')} - ${maxInput}`
+    rangeDiv.innerText = `${minInput.toString().padStart(2, '0')} - ${maxInput}`
 }
 
 const checkAnswer = function () {
@@ -32,7 +32,7 @@ const checkAnswer = function () {
             maxInput = inputNum
             setInputRange()
         }
-        else{
+        else {
             rangeDiv.innerText = '答對囉'
         }
     }
@@ -63,3 +63,12 @@ const resetGame = function () {
     setInputRange()
 }
 buttonR.addEventListener('click', resetGame)
+
+const buttonA = document.getElementById('btnA')
+buttonA.addEventListener('click', function () {
+    inputDiv.innerText = inputDiv.innerText.slice(0, -1)
+    if(inputDiv.innerText.length === 0){
+        inputDiv.innerText = '-'
+    }
+})
+
