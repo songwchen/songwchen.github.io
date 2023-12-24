@@ -30,6 +30,10 @@ body{
     background-color: #fffaf0;
 }
 
+#btnA{
+    transform: rotate(180deg);
+}
+
 .result{
     display: flex;
     flex-direction: column;
@@ -39,7 +43,7 @@ body{
 
 #range{
     font-size: 20px;
-    margin-bottom: 40px;
+    margin: 0px 15px 40px;
 }
 
 #input{
