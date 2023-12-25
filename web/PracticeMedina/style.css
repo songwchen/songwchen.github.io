@@ -1,0 +1,129 @@
+:root {
+	--lightBlue: #2a93c9;
+	--darkBlue: #2684b5;
+}
+
+body {
+	font-family: 'Lato', sans-serif;
+}
+
+img {
+	display: inline-block;
+}
+
+header {
+	width: 100%;
+	height: 56px;
+	padding: 0px;
+	background-color: var(--lightBlue);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+header div {
+	display: flex;
+}
+
+button {
+	border: none;
+	background-color: transparent;
+}
+
+.headerLeft img {
+	height: 40px;
+}
+
+.headerRight img {
+	height: 26px;
+}
+
+.ham,
+.breadcrumb {
+	width: 28px;
+	position: relative;
+}
+
+.ham {
+	margin: 0px 18px 0px 14px;
+}
+
+.ham::after {
+	content: '';
+	background-color: #fff;
+	width: 80%;
+	height: 4px;
+	position: absolute;
+	inset: 0;
+	margin: auto;
+	box-shadow: 0px -8px #fff, 0px 8px #fff;
+	border-radius: 2px;
+}
+
+.breadcrumb {
+	margin: 0px 14px 0px 18px;
+}
+
+.breadcrumb::after {
+	content: '';
+	background-color: #fff;
+	width: 6px;
+	height: 6px;
+	position: absolute;
+	inset: 0;
+	margin: auto;
+	box-shadow: 0px -9px #fff, 0px 9px #fff;
+	border-radius: 3px;
+}
+
+nav {
+	background-color: #fff;
+	min-height: 100vh;
+	width: 250px;
+	position: absolute;
+	transition: .5s ease;
+}
+
+.navDisplayNone {
+	left: -100%;
+}
+
+.navDisplayBlock {
+	left: 0%;
+}
+
+nav a {
+	text-decoration: none;
+	color: #9b9b9b;
+	font-size: 14px;
+	display: block;
+	padding: 18px 20px;
+}
+
+nav>ul:first-of-type {
+	padding-top: 22px;
+}
+
+nav p {
+	color: #ccc;
+	font-size: 16px;
+	display: block;
+	padding: 12px 20px;
+}
+
+.hasSubMenu a:first-of-type {
+	display: flex;
+	justify-content: space-between;
+}
+
+.displayNone {
+	display: none;
+}
+
+.displayBlock {
+	display: block;
+}
+
+.subMenu a {
+	font-size: 12px;
+}
