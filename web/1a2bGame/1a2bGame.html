@@ -16,17 +16,17 @@
 		crossorigin="anonymous"></script>
 
 	<section class="d-flex justify-content-center align-items-center mt-5">
-		<div class="w-25">
+		<div class="w-50">
 			<h1 class="text-center">1A2B Game</h1>
 			<div id="controlButtons" class="mt-3 mb-3 btn-group d-flex gap-1">
 				<button id="startBtn" class="btn btn-success">Start Game !</button>
 				<button id="restartBtn" class="btn btn-success" disabled>Restart a Game</button>
 				<button id="quitBtn" class="btn btn-success">See the Answer</button>
 			</div>
-			<div id="execArea" class="d-flex justify-content-end position-relative rounded">
-				<input type="text" id="inputBox" class="w-100 d-block p-1" placeholder="Enter a non-repeating 4 digits number">
+			<div id="execArea" class="d-flex justify-content-end btn-group">
+				<input type="text" id="inputBox" class="w-100 d-block p-1 rounded-start border border-2" placeholder="Enter a non-repeating 4 digits number">
 				<button id="guessBtn"
-					class=" d-block position-absolute ml-auto btn btn-success align-self-center">Guess!</button>
+					class=" d-block ml-auto btn btn-success align-self-center">Guess!</button>
 			</div>
 			<div id="recordDiv">
 				<ul>
