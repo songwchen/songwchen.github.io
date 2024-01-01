@@ -21,17 +21,15 @@ function createRandomNumber() {
 	return answerArr
 }
 
-function disableStartBtn() {
+startBtn.addEventListener('click', () => {
+	createRandomNumber()
 	startBtn.setAttribute('disabled', true)
-}
-
-function enableRestartBtn() {
 	restartBtn.removeAttribute('disabled')
-}
-
-startBtn.addEventListener('click', createRandomNumber)
-startBtn.addEventListener('click', disableStartBtn)
-startBtn.addEventListener('click', enableRestartBtn)
+	quitBtn.removeAttribute('disabled')
+	guessBtn.removeAttribute('disabled')
+	inputBox.addEventListener('keydown', enterKeyEvent)
+	guessBtn.addEventListener('click', AddRecord)
+})
 
 function checkInput() {
 	inputNum = inputBox.value.replace(/\s/g, '')
@@ -76,18 +74,20 @@ function checkInput() {
 	return [`${ACount}A${BCount}B`, inputNum, isValid]
 }
 
+let setLi = document.createElement('li')
+let setSpan = document.createElement('span')
+let ul = document.querySelector('ul')
+
+ul.classList.add('list-group', 'mt-3')
+setLi.classList.add('list-group-item', 'position-relative', 'd-flex', 'justify-content-center', 'align-items-center')
+setSpan.classList.add('position-absolute', 'text-bg-warning', 'px-3', 'py-1', 'start-0', 'ms-2', 'rounded')
+
 function AddRecord() {
 	let resultArr = checkInput()
 	console.log(`resultArr : ${resultArr}`)
 
-	let li = document.createElement('li')
-	let span = document.createElement('span')
-	let ul = document.querySelector('ul')
-
-	ul.classList.add('list-group', 'mt-3')
-	li.classList.add('list-group-item', 'position-relative', 'd-flex', 'justify-content-center', 'align-items-center')
-	span.classList.add('position-absolute', 'text-bg-warning', 'px-3', 'py-1', 'start-0', 'ms-2', 'rounded')
-
+	li = setLi.cloneNode(false)
+	span = setSpan.cloneNode(false)
 
 	if (resultArr[2]) {
 		span.innerText = resultArr[0]
@@ -105,35 +105,60 @@ function AddRecord() {
 
 	li.insertBefore(span, li.firstChild)
 	ul.append(li)
-
-	if(span.classList.contains('text-bg-success')){
+	if (span.classList.contains('text-bg-success')) {
 		let liSuccess = li.cloneNode(false)
-		liSuccess.classList.add('text-bg-success')
 		liSuccess.innerText = 'Success !'
+		liSuccess.setAttribute('style', 'transition: 0.3s ease;')
+		liSuccess.classList.add('text-bg-success')
+		let currentColorClass = 0
+		setInterval(() => {
+			let colorArr = ['text-bg-danger', 'text-bg-warning', 'text-bg-success', 'text-bg-info']
+			currentColorClass = (currentColorClass % 4)
+			liSuccess.classList.remove(colorArr[0], colorArr[1], colorArr[2], colorArr[3])
+			liSuccess.classList.add(colorArr[currentColorClass])
+			currentColorClass++
+		}, 1000)
 		ul.append(liSuccess)
-		quitBtn.setAttribute('disabled', 'true')
-		guessBtn.setAttribute('disabled', 'true')
+		quitBtn.setAttribute('disabled', true)
+		guessBtn.setAttribute('disabled', true)
+		inputBox.removeEventListener('keydown', enterKeyEvent)
+		guessBtn.removeEventListener('click', AddRecord)
 	}
+	window.scrollTo(0, document.body.scrollHeight)
 
 	ACount = 0
 	BCount = 0
 }
 
-inputBox.addEventListener('keydown', (e) => {
+function enterKeyEvent(e) {
 	if (e.key === "Enter") {
 		AddRecord()
 	}
-})
-
-guessBtn.addEventListener('click', () => {
-	AddRecord()
-})
+}
 
 restartBtn.addEventListener('click', () => {
 	quitBtn.removeAttribute('disabled')
 	guessBtn.removeAttribute('disabled')
+
+	inputBox.removeEventListener('keydown', enterKeyEvent)
+	guessBtn.removeEventListener('click', AddRecord)
+	inputBox.addEventListener('keydown', enterKeyEvent)
+	guessBtn.addEventListener('click', AddRecord)
+
 	answerArr = []
 	createRandomNumber()
 	let ul = document.querySelector('ul')
 	ul.innerText = ''
+})
+
+function seeTheAnswer() {
+	answerLi = setLi.cloneNode(false)
+	answerLi.innerText = `The answer is ${answerArr.join('')}`
+	ul.append(answerLi)
+}
+
+quitBtn.addEventListener('click', () => {
+	guessBtn.setAttribute('disabled', true)
+	quitBtn.setAttribute('disabled', true)
+	seeTheAnswer()
 })
