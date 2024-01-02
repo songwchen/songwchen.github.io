@@ -1,0 +1,22 @@
+body {
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#day-form div div {
+	width: 14.285714%;
+	text-align: center;
+}
+
+#day-form>div:last-child div {
+	height: 300px;
+}
+
+.day-block {
+	background-color: #eee;
+	border: 1px #333 solid;
+}
+
+.filling-block {
+	color: #ddd;
+	background-color: #777;
+}
