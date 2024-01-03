@@ -1,22 +1,60 @@
+:root {
+	--date-index-width: 150px;
+	--date-index-margin: 2px;
+	--total-width: calc(var(--date-index-width)*7 + var(--date-index-margin)*14)
+}
+
 body {
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	font-size: 18px;
 }
 
-#day-form div div {
-	width: 14.285714%;
+.width {
+	width: var(--total-width);
+}
+
+#control-btn-and-year-month button {
+	border: 1px #ddd solid;
+}
+
+#p-year-month {
+	letter-spacing: 2px;
+	font-size: 26px;
+	font-weight: 700;
+	margin: 0;
+}
+
+#week-name div,
+#date-index div {
+	width: var(--date-index-width);
 	text-align: center;
+	margin: var(--date-index-margin);
+	border-radius: 3px;
 }
 
-#day-form>div:last-child div {
-	height: 300px;
+#week-name div {
+	padding: 3px 0px;
+	border: 1px #eee solid;
+}
+
+#week-name :first-child,
+#week-name :last-child {
+	background-color: #8BC881;
+	border: none;
+}
+
+.day-block,
+.filling-block {
+	height: 120px;
+	padding: 5px;
 }
 
 .day-block {
-	background-color: #eee;
-	border: 1px #333 solid;
+	background-color: #f8f8f8;
+	border: 1px #eee solid;
 }
 
 .filling-block {
-	color: #ddd;
-	background-color: #777;
+	color: #eee;
+	background-color: #bbb;
 }
