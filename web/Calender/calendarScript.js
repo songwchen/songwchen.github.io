@@ -13,7 +13,7 @@ function createCurrentCalender(FullDate) {
 
 	// 抓當月的第一天是星期幾
 	let firstDayOfWeek = new Date(FullDate.getFullYear(), FullDate.getMonth(), 1).getDay()
-	console.log(`firstDayOfWeek : ${firstDayOfWeek}`)
+	// console.log(`firstDayOfWeek : ${firstDayOfWeek}`)
 
 	// 抓當月的前後需要補幾格上下個月的空格
 	let blockFrontFillingAmount = (firstDayOfWeek % 7) // 前面要補幾格
@@ -21,8 +21,8 @@ function createCurrentCalender(FullDate) {
 		new Date(FullDate.getFullYear(), FullDate.getMonth() + 1, 0).getDate() // 本身有幾格
 	let blockEndFillingAmount =
 		(7 - ((blockFrontFillingAmount + daysInMonth) % 7)) % 7 // 後面要補幾格
-	console.log(`blockFrontFillingAmount : ${blockFrontFillingAmount}`)
-	console.log(`blockEndFillingAmount : ${blockEndFillingAmount}`)
+	// console.log(`blockFrontFillingAmount : ${blockFrontFillingAmount}`)
+	// console.log(`blockEndFillingAmount : ${blockEndFillingAmount}`)
 
 	// 生成前後月的格子和當月的格子
 	let setDayBlock = document.createElement('div')
@@ -65,10 +65,19 @@ let nextBtn = document.querySelector('#control-btn-and-year-month button:last-ch
 let monthAdder = 0
 
 prevBtn.addEventListener('click', function(){
-	// monthAdder -= 1
+	monthAdder -= 1
+	dateforCalculation = new Date()
 	dateIndex.innerText = ''
-	currentFullDate.setMonth(currentFullDate.getMonth() - 1)
-	createCurrentCalender(currentFullDate)
+	dateforCalculation.setMonth(dateforCalculation.getMonth() + monthAdder)
+	createCurrentCalender(dateforCalculation)
+})
+
+nextBtn.addEventListener('click', function(FullDate){
+	monthAdder += 1
+	dateforCalculation = new Date()
+	dateIndex.innerText = ''
+	dateforCalculation.setMonth(dateforCalculation.getMonth() + monthAdder)
+	createCurrentCalender(dateforCalculation)
 })
 
 const exampleModal = document.getElementById('exampleModal')

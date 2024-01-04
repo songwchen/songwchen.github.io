@@ -11,6 +11,7 @@ body {
 
 .width {
 	width: var(--total-width);
+	min-width: var(--total-width);
 }
 
 #control-btn-and-year-month button {
@@ -21,7 +22,7 @@ body {
 	letter-spacing: 2px;
 	font-size: 26px;
 	font-weight: 700;
-	margin: 0;
+	margin: 5px 0;
 }
 
 #week-name div,
