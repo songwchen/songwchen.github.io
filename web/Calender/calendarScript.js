@@ -1,9 +1,25 @@
 let currentFullDate = new Date()
 let dateIndex = document.getElementById('date-index')
+let todoList = []
 
-window.onload = function () {
-	createCurrentCalender(currentFullDate)
-	// new Date(2022, 7, 1) 檢驗用
+// window.onload = function () {
+createCurrentCalender(currentFullDate)
+loadLocalStorage()
+loadTodoToDayBlock()
+applyClickingFunctionToTodo()
+// new Date(2022, 7, 1) 檢驗用
+// }
+
+function loadLocalStorage() {
+	const getJsonString = localStorage.getItem('todoListJson')
+	todoList = JSON.parse(getJsonString)
+	console.log(`JSON parsed, todoList :`)
+	console.log(todoList)
+}
+
+function saveToLocalStorage() {
+	const todoListToJson = JSON.stringify(todoList)
+	localStorage.setItem('todoListJson', todoListToJson)
 }
 
 function createCurrentCalender(FullDate) {
@@ -29,8 +45,6 @@ function createCurrentCalender(FullDate) {
 		new Date(FullDate.getFullYear(), FullDate.getMonth() + 1, 0).getDate() // 本身有幾格
 	let blockEndFillingAmount =
 		(7 - ((blockFrontFillingAmount + daysInMonth) % 7)) % 7 // 後面要補幾格
-	// console.log(`blockFrontFillingAmount : ${blockFrontFillingAmount}`)
-	// console.log(`blockEndFillingAmount : ${blockEndFillingAmount}`)
 
 	// 月曆前方需要補的空格
 	for (let i = 0; i < blockFrontFillingAmount; i++) {
@@ -85,6 +99,7 @@ prevBtn.addEventListener('click', function () {
 	dateIndex.innerText = ''
 	dateforCalculation.setMonth(dateforCalculation.getMonth() + monthAdder)
 	createCurrentCalender(dateforCalculation)
+	loadTodoToDayBlock()
 })
 
 // 上個月的按鈕
@@ -94,6 +109,7 @@ nextBtn.addEventListener('click', function () {
 	dateIndex.innerText = ''
 	dateforCalculation.setMonth(dateforCalculation.getMonth() + monthAdder)
 	createCurrentCalender(dateforCalculation)
+	loadTodoToDayBlock()
 })
 
 let dayblocks = document.querySelectorAll('#date-index')
@@ -102,22 +118,20 @@ dayblocks.forEach(function (dayblock) {
 	dayblock.addEventListener('click', function (e) {
 		if (e.target.classList.contains('day-block')) {
 			clickedBlock = e.target
-			addTodoItem(e.target)
+			setModalContent(e.target)
 		}
 	})
 })
 
-const todoList = []
+// 生成modal內容
 let eightDigitsDateForId
-
-
-function addTodoItem(e) {
+function setModalContent(e) {
 	let year = document.getElementById('p-year-month').innerText.substring(0, 4)
 	let month = document.getElementById('p-year-month').innerText.substring(7, 9)
 	// console.log(e)
-	let day = e.childNodes[0].nodeValue.padStart(2, '0')
+	let day = e.querySelector('div').innerText.padStart(2, '0')
 	eightDigitsDateForId = `${year}${month}${day}`
-	// console.log(`${year} - ${month} - ${day}`)
+	console.log(`${year} - ${month} - ${day}`)
 
 	let modalTitle = document.getElementById('exampleModalLabel')
 
@@ -127,8 +141,10 @@ function addTodoItem(e) {
 let sendMessageBtn = document.getElementById('send-message')
 sendMessageBtn.addEventListener('click', function () {
 	createTodoItemAndSubmit(eightDigitsDateForId)
+	saveToLocalStorage()
 })
 
+// modal已經顯示，輸入完後按下送出
 function createTodoItemAndSubmit(eightDigitsDateForId) {
 	let isIdRepeated = false
 	let todoId
@@ -158,21 +174,59 @@ function createTodoItemAndSubmit(eightDigitsDateForId) {
 		}
 	)
 
-	console.log(`todoList :`)
+	console.log(`After pushed, todoList :`)
 	console.log(todoList)
 
 	let pTodoItem = document.createElement('p')
 	pTodoItem.innerText = todoTitle.value
-	pTodoItem.setAttribute('todo-id',todoId)
+	pTodoItem.setAttribute('todoItem-id', todoId)
 	clickedBlock.append(pTodoItem)
-
-	const todoListToJson = JSON.stringify(todoList)
-	localStorage.setItem('todoListJson', todoListToJson)
 }
 
 // 把todo載入到dayblock
-function loadTodoToDayBlock(){
-	// 取得todo
+function loadTodoToDayBlock() {
+	// 取得現在是幾年幾月(todoItem.id的前六碼)
+	let year = document.getElementById('p-year-month').innerText.substring(0, 4)
+	let month = document.getElementById('p-year-month').innerText.substring(7, 9)
+	let yyyymm = year.concat(month)
+	console.log(`yyyymm : ${yyyymm}`)
+
+	// 篩選出這個月的todoItem
+	let todosOfThisMonth = todoList.filter(item => item.id.substring(0, 6) === yyyymm)
+	console.log(`todosOfThisMonth :`)
+	console.log(todosOfThisMonth)
+
+	// 
+	todosOfThisMonth.forEach(todoItem => {
+		let todoDate = todoItem.id.substring(6, 8)
+		let dateDivs = document.querySelectorAll('.day-block div') // 取得當月所有dayblock的數字
+		console.log('dateDivs :')
+		console.log(dateDivs)
+		let targetDateDiv = Array.from(dateDivs).find(dayDiv => dayDiv.innerText.padStart(2, '0') == todoDate) // 取得與todoItem相同日期的div
+		console.log(`targetDateDiv : ${targetDateDiv.innerText}`)
+		let pTodoItem = document.createElement('p')
+		pTodoItem.setAttribute('todoItem-id', todoItem.id)
+		pTodoItem.append(todoItem.title)
+		targetDateDiv.parentNode.append(pTodoItem)
+	})
+}
+
+function applyClickingFunctionToTodo() {
+	let todoItemsInBlock = document.querySelectorAll('p[todoitem-id]')
+	console.log('todoItemsInBlock :')
+	console.log(todoItemsInBlock)
+	todoItemsInBlock.forEach(function (todoItem) {
+		todoItem.addEventListener('click', function (e) {
+			console.log('p clicked :')
+			console.log(e.target)
+			e.stopPropagation()
+		})
+	})
+
+}
+
+function editTodo() {
+
 }
 
 
