@@ -185,30 +185,35 @@ function createTodoItemAndSubmit(eightDigitsDateForId) {
 
 // 把todo載入到dayblock
 function loadTodoToDayBlock() {
-	// 取得現在是幾年幾月(todoItem.id的前六碼)
-	let year = document.getElementById('p-year-month').innerText.substring(0, 4)
-	let month = document.getElementById('p-year-month').innerText.substring(7, 9)
-	let yyyymm = year.concat(month)
-	console.log(`yyyymm : ${yyyymm}`)
+	if (todoList.length !== 0) {
+		// 取得現在是幾年幾月(todoItem.id的前六碼)
+		let year = document.getElementById('p-year-month').innerText.substring(0, 4)
+		let month = document.getElementById('p-year-month').innerText.substring(7, 9)
+		let yyyymm = year.concat(month)
+		console.log(`yyyymm : ${yyyymm}`)
 
-	// 篩選出這個月的todoItem
-	let todosOfThisMonth = todoList.filter(item => item.id.substring(0, 6) === yyyymm)
-	console.log(`todosOfThisMonth :`)
-	console.log(todosOfThisMonth)
+		// 篩選出這個月的todoItem
 
-	// 
-	todosOfThisMonth.forEach(todoItem => {
-		let todoDate = todoItem.id.substring(6, 8)
-		let dateDivs = document.querySelectorAll('.day-block div') // 取得當月所有dayblock的數字
-		console.log('dateDivs :')
-		console.log(dateDivs)
-		let targetDateDiv = Array.from(dateDivs).find(dayDiv => dayDiv.innerText.padStart(2, '0') == todoDate) // 取得與todoItem相同日期的div
-		console.log(`targetDateDiv : ${targetDateDiv.innerText}`)
-		let pTodoItem = document.createElement('p')
-		pTodoItem.setAttribute('todoItem-id', todoItem.id)
-		pTodoItem.append(todoItem.title)
-		targetDateDiv.parentNode.append(pTodoItem)
-	})
+
+		let todosOfThisMonth = todoList.filter(item => item.id.substring(0, 6) === yyyymm)
+
+		console.log(`todosOfThisMonth :`)
+		console.log(todosOfThisMonth)
+
+		// 
+		todosOfThisMonth.forEach(todoItem => {
+			let todoDate = todoItem.id.substring(6, 8)
+			let dateDivs = document.querySelectorAll('.day-block div') // 取得當月所有dayblock的數字
+			console.log('dateDivs :')
+			console.log(dateDivs)
+			let targetDateDiv = Array.from(dateDivs).find(dayDiv => dayDiv.innerText.padStart(2, '0') == todoDate) // 取得與todoItem相同日期的div
+			console.log(`targetDateDiv : ${targetDateDiv.innerText}`)
+			let pTodoItem = document.createElement('p')
+			pTodoItem.setAttribute('todoItem-id', todoItem.id)
+			pTodoItem.append(todoItem.title)
+			targetDateDiv.parentNode.append(pTodoItem)
+		})
+	}
 }
 
 function applyClickingFunctionToTodo() {
