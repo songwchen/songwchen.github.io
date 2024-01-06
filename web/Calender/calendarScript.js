@@ -185,7 +185,7 @@ function createTodoItemAndSubmit(eightDigitsDateForId) {
 
 // 把todo載入到dayblock
 function loadTodoToDayBlock() {
-	if (todoList.length !== 0) {
+	if (todoList) {
 		// 取得現在是幾年幾月(todoItem.id的前六碼)
 		let year = document.getElementById('p-year-month').innerText.substring(0, 4)
 		let month = document.getElementById('p-year-month').innerText.substring(7, 9)
