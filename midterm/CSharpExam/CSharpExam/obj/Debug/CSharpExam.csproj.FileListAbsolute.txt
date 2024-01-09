@@ -1,0 +1,8 @@
+C:\BS\Midterm\CSharpExam\CSharpExam\bin\Debug\CSharpExam.exe.config
+C:\BS\Midterm\CSharpExam\CSharpExam\bin\Debug\CSharpExam.exe
+C:\BS\Midterm\CSharpExam\CSharpExam\bin\Debug\CSharpExam.pdb
+C:\BS\Midterm\CSharpExam\CSharpExam\obj\Debug\CSharpExam.csproj.AssemblyReference.cache
+C:\BS\Midterm\CSharpExam\CSharpExam\obj\Debug\CSharpExam.csproj.SuggestedBindingRedirects.cache
+C:\BS\Midterm\CSharpExam\CSharpExam\obj\Debug\CSharpExam.csproj.CoreCompileInputs.cache
+C:\BS\Midterm\CSharpExam\CSharpExam\obj\Debug\CSharpExam.exe
+C:\BS\Midterm\CSharpExam\CSharpExam\obj\Debug\CSharpExam.pdb

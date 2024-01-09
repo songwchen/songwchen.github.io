@@ -1,0 +1,27 @@
+body {
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.width {
+	width: 960px;
+}
+
+#todo-width{
+	border: 1px #ccc solid;
+	border-radius: 4px;
+}
+
+#add-todo-btn {
+	color: #fff;
+	background-color: #78BED1
+}
+
+#todo-item {
+	background-color: #eee;
+	border: 1px #ccc solid;
+	border-radius: 3px;
+}
+
+#todo-name{
+	border-left: 1px #ccc solid;
+}
