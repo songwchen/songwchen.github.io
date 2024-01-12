@@ -6,7 +6,7 @@ body {
 	width: 960px;
 }
 
-#todo-width{
+#todo-width {
 	border: 1px #ccc solid;
 	border-radius: 4px;
 }
@@ -20,8 +20,24 @@ body {
 	background-color: #eee;
 	border: 1px #ccc solid;
 	border-radius: 3px;
+	cursor: pointer;
 }
 
-#todo-name{
+#todo-checkbox {
+	cursor: pointer;
+}
+
+#todo-name {
 	border-left: 1px #ccc solid;
+	cursor: pointer;
+}
+
+#edit-btn {
+	width: 80px;
+	font-weight: 600;
+}
+
+#delete-btn {
+	width: 80px;
+	font-weight: 600;
 }
