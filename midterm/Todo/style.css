@@ -16,18 +16,18 @@ body {
 	background-color: #78BED1
 }
 
-#todo-item {
+.todo-item {
 	background-color: #eee;
 	border: 1px #ccc solid;
 	border-radius: 3px;
 	cursor: pointer;
 }
 
-#todo-checkbox {
+.todo-checkbox {
 	cursor: pointer;
 }
 
-#todo-name {
+.todo-name {
 	border-left: 1px #ccc solid;
 	cursor: pointer;
 }

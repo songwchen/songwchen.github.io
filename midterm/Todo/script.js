@@ -2,31 +2,40 @@ const inputBox = document.querySelector('#todo-input')
 const addTodoBtn = document.querySelector('#add-todo-btn')
 const todoSection = document.querySelector('#todo-section')
 const setTodoItem = document.querySelector('#todo-width')
-const deleteBtns = document.querySelectorAll('.delete-btn')
-const editBtns = document.querySelectorAll('.edit-btn')
+let deleteBtns
+let editBtns
 const modalNahBtn = document.querySelector('#modal-nah-btn')
 const modalDeleteBtn = document.querySelector('#modal-delete-btn')
+const modalWindow = document.querySelector('#confirm-to-delete-modal')
 
 let todoArr = []
 
 window.onload = function () {
 	loadTodoItem()
+	deleteBtnEvent()
 }
 
 function loadTodoItem() {
+	todoSection.innerText = ''
 	todoArr = localStorage.getItem('todoArrAsJson') ?
 		JSON.parse(localStorage.getItem('todoArrAsJson')) : []
 	if (todoArr.length !== 0) {
-		for (todo of todoArr) {
+		todoArr.forEach((todo, idx) => {
+			todo.id = idx + 1 // rearrange id
 			console.log(todo)
+			console.log(idx)
 			renderTodoItem(todo.id, todo.text)
-		}
+		})
 	}
 }
 
 function renderTodoItem(id, text) {
 	let todoItem = setTodoItem.cloneNode(true)
-	let todoStringBox = todoItem.querySelector('#todo-name')
+	let todoCheckBox = todoItem.querySelector('.todo-checkbox')
+	let todoStringBox = todoItem.querySelector('.todo-name')
+	todoCheckBox.id = 'todo-checkbox-' + id.toString()
+	todoStringBox.id = 'todo-name-' + id.toString()
+	todoStringBox.htmlFor = 'todo-checkbox-' + id.toString()
 	todoStringBox.innerText = text
 	todoItem.setAttribute('todo-id', id)
 	todoItem.classList.remove('d-none')
@@ -52,6 +61,8 @@ function createTodoObject() {
 
 	renderTodoItem(todoId, todoString)
 	storeJson()
+	loadTodoItem()
+	deleteBtnEvent()
 	inputBox.value = ''
 }
 
@@ -62,16 +73,21 @@ inputBox.addEventListener('keydown', function (event) {
 	}
 });
 
-function deleteTodoItem(e) {
-	console.log('e')
-	console.log(e)
-}
+function deleteBtnEvent(){
+	deleteBtns = document.querySelectorAll('.delete-btn')
+	editBtns = document.querySelectorAll('.edit-btn')
 
-deleteBtns.forEach(deleteBtn => {
-	deleteBtn.addEventListener('click', function (e) {
-		console.log('1')
-		console.log(e.target)
-		e.stopPropagation()
-		// deleteTodoItem(e)
+	// Add Delete Button Event
+	deleteBtns.forEach(deleteBtn => {
+		deleteBtn.addEventListener('click', function (e) {
+			e.stopPropagation()
+			todoIndex = e.target.parentNode.getAttribute('todo-id')
+			modalDeleteBtn.addEventListener('click', () => {
+				todoArr = todoArr.filter(todo => todo.id != todoIndex)
+				console.log(todoArr)
+				storeJson()
+				loadTodoItem()
+			})
+		})
 	})
-})
+}
