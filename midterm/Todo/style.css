@@ -6,14 +6,14 @@ body {
 	width: 960px;
 }
 
-#todo-width {
-	border: 1px #ccc solid;
-	border-radius: 4px;
-}
-
 #add-todo-btn {
 	color: #fff;
 	background-color: #78BED1
+}
+
+.todo-wrap {
+	border: 1px #ccc solid;
+	border-radius: 4px;
 }
 
 .todo-item {
@@ -27,17 +27,22 @@ body {
 	cursor: pointer;
 }
 
+.edit-input{
+	border-radius: 0px 3px 3px 0px;
+}
+
 .todo-name {
+	border:none;
 	border-left: 1px #ccc solid;
 	cursor: pointer;
 }
 
-#edit-btn {
+.edit-btn {
 	width: 80px;
 	font-weight: 600;
 }
 
-#delete-btn {
+.delete-btn {
 	width: 80px;
 	font-weight: 600;
 }
