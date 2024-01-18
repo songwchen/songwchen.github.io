@@ -11,7 +11,6 @@ let todoArr = []
 window.onload = function () {
 	loadJson()
 	renderTodoItem()
-	saveToJson()
 }
 
 addBtn.addEventListener('click', function () {
@@ -76,7 +75,7 @@ function renderTodoItem() {
 	})
 
 	setDeleteBtnsEvent()
-	// setEditBtnsEvent()
+	setEditBtnsEvent()
 }
 
 function setDeleteBtnsEvent() {
@@ -86,6 +85,9 @@ function setDeleteBtnsEvent() {
 		deleteBtn.onclick = function (e) {
 			let thePressedBtn = e.target
 			console.log(thePressedBtn)
+			let modalTitle = document.querySelector('.modal-title')
+			let deletingTodoString = thePressedBtn.parentNode.querySelector('.todo-name').innerText
+			modalTitle.innerText = `Confirm to delete "${deletingTodoString}" ?`
 			// 幫modal上的刪除按鈕掛上事件
 			// 用addEventListener會重複掛，所以用onclick
 			modalDeleteBtn.onclick = function () {
@@ -176,4 +178,8 @@ function editTodoObject(editBtn, editedString) {
 	let todoIndex = todoArr.findIndex(todo => todo.id === todoItemId)
 	console.log(`todoIndex: ${todoIndex}`)
 	todoArr[todoIndex].content = editedString
+}
+
+function changeIsDoneStatus(){
+	
 }
