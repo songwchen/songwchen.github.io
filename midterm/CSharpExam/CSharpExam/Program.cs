@@ -201,6 +201,9 @@ namespace CSharpExam
                 {
                     Console.WriteLine(student);
                 }
+
+                Console.WriteLine("------------- Answer 2 -------------");
+                studentList.Where(stu => stu.CourseList.Sum(stuCourseId => courseList.First(cLcourse => cLcourse.CourseId == stuCourseId).Credit) < 10).Select(stu => stu.Name).ToList().ForEach(x => Console.WriteLine(x));
             }
 
             Console.WriteLine($"{Environment.NewLine}");
@@ -213,6 +216,9 @@ namespace CSharpExam
                 //作答區
                 var studentWithHighestCredit = studentList.OrderByDescending(stu => stu.CourseList.Sum(stuCourseId => courseList.First(cLcourse => cLcourse.CourseId == stuCourseId).Credit)).Select(stu => stu.Name).Take(1).Single();
                 Console.WriteLine(studentWithHighestCredit);
+
+                Console.WriteLine("------------- Answer 2 -------------");
+                Console.WriteLine(studentList.OrderByDescending(stu => stu.CourseList.Sum(stuCourseId => courseList.First(cLcourse => cLcourse.CourseId == stuCourseId).Credit)).Select(stu => stu.Name).First());
             }
 
             Console.WriteLine($"{Environment.NewLine}");
