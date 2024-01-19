@@ -28,6 +28,14 @@ todoInput.addEventListener('keydown', function (e) {
 	}
 })
 
+todoInput.addEventListener('focus', function(){
+	todoInput.placeholder = ''
+})
+
+todoInput.addEventListener('blur', function(){
+	todoInput.placeholder = "I'm gonna"
+})
+
 // 依據使用者輸入產生物件
 function createTodoObject() {
 	let inputText = todoInput.value
