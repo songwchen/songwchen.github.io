@@ -24,22 +24,24 @@
 	</section>
 	<section id="todo-section" class="d-flex flex-column align-items-center mt-3">
 	</section>
-		<template>
-			<div id="" class="todo-wrap width d-flex align-items-center mt-3">
-				<div id="" class="todo-item d-flex align-items-center h-100 flex-grow-1 ms-4">
-					<div id="" class="checkbox-wrap d-flex px-3">
-						<input class="todo-checkbox" type="checkbox" value="" id="aa">
-					</div>
-					<!-- <input type="text" class="edit-input form-control border-0 border-start p-2 flex-grow-1"> -->
-					<label id="" class="todo-name p-2 flex-grow-1" for="aa">
-						Default CheckBox
-					</label>
-				</div>
-				<button id="" class="edit-btn btn btn-outline-warning ms-3 my-4 h-100">Edit</button>
-				<button id="" class="delete-btn btn btn-outline-danger ms-2 me-4 my-4 h-100" data-bs-toggle="modal"
-					data-bs-target="#confirm-to-delete-modal">Delete</button>
+	<template>
+	<div id="" class="todo-wrap width d-flex align-items-center mt-3">
+		<div id="" class="todo-item d-flex align-items-center h-100 flex-grow-1 ms-4 position-relative">
+			<div id="" class="checkbox-wrap d-flex px-3">
+				<input class="todo-checkbox" type="checkbox" value="" id="aa">
 			</div>
-		</template>
+			<!-- <input type="text" class="edit-input form-control border-0 border-start p-2 flex-grow-1"> -->
+			<label id="" class="todo-name p-2 flex-grow-1" for="aa">
+				Default CheckBox
+			</label>
+			<span class="done-tag badge text-bg-light position-absolute end-0 me-2">Done
+			</span>
+		</div>
+		<button id="" class="edit-btn btn btn-outline-warning ms-3 my-4 h-100">Edit</button>
+		<button id="" class="delete-btn btn btn-outline-danger ms-2 me-4 my-4 h-100" data-bs-toggle="modal"
+			data-bs-target="#confirm-to-delete-modal">Delete</button>
+	</div>
+	</template>
 
 	<!-- Confirm to Delete Modal -->
 	<div class="modal fade" id="confirm-to-delete-modal" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -54,8 +56,10 @@
 					Confirm to delete ?
 				</div> -->
 				<div class="modal-footer">
-					<button type="button" id="modal-nah-btn" class="btn btn-primary" data-bs-dismiss="modal">Nah</button>
-					<button type="button" id="modal-delete-btn" class="btn btn-secondary" data-bs-dismiss="modal">Delete it !</button>
+					<button type="button" id="modal-nah-btn" class="btn btn-primary"
+						data-bs-dismiss="modal">Nah</button>
+					<button type="button" id="modal-delete-btn" class="btn btn-secondary" data-bs-dismiss="modal">Delete
+						it !</button>
 				</div>
 			</div>
 		</div>

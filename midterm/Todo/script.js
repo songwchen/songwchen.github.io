@@ -4,8 +4,6 @@ const todoInput = document.querySelector('#todo-input')
 const addBtn = document.querySelector('#add-todo-btn')
 const todoSection = document.querySelector('#todo-section')
 const modalDeleteBtn = document.querySelector('#modal-delete-btn')
-let deleteBtns
-let editBtns
 let todoArr = []
 
 window.onload = function () {
@@ -26,6 +24,7 @@ todoInput.addEventListener('keydown', function (e) {
 		saveToJson()
 		loadJson()
 		renderTodoItem()
+		setDeleteBtnsEvent()
 	}
 })
 
@@ -67,19 +66,37 @@ function renderTodoItem() {
 		const todoItem = todoItemTemplate.cloneNode(true)
 		const todoName = todoItem.querySelector('.todo-name')
 		const checkbox = todoItem.querySelector('.todo-checkbox')
-		todoName.innerText = todo.content
+		const doneTag = todoItem.querySelector('.done-tag')
+		const editBtn = todoItem.querySelector('.edit-btn')
+		todoName.innerText = todo.content // 這邊就讓doneTag不會自動出現了
 		checkbox.id = `checkbox-${todo.id}`
 		todoName.htmlFor = checkbox.id
+
+		if (todo.isDone === true) { // 如果todo是完成的狀態時
+			todoName.style.color = '#aaa'
+			checkbox.checked = true
+			editBtn.disabled = true
+			editBtn.classList.remove('btn-outline-warning')
+			editBtn.classList.add('btn-outline-dark')
+		} else { // 如果todo是還沒完成的狀態時
+			todoName.style.color = '#000'
+			checkbox.checked = false
+			editBtn.disabled = false
+			editBtn.classList.remove('btn-outline-dark')
+			editBtn.classList.add('btn-outline-warning')
+			doneTag.remove()
+		}
 		todoItem.id = `todoItem-${todo.id}`
 		todoSection.append(todoItem)
 	})
 
 	setDeleteBtnsEvent()
 	setEditBtnsEvent()
+	changeIsDoneStatus()
 }
 
 function setDeleteBtnsEvent() {
-	deleteBtns = document.querySelectorAll('.delete-btn')
+	let deleteBtns = document.querySelectorAll('.delete-btn')
 	// 幫每個按鈕掛上事件
 	deleteBtns.forEach(deleteBtn => {
 		deleteBtn.onclick = function (e) {
@@ -92,7 +109,8 @@ function setDeleteBtnsEvent() {
 			// 用addEventListener會重複掛，所以用onclick
 			modalDeleteBtn.onclick = function () {
 				deleteTodoObject(thePressedBtn)
-				rearrangeTodoId()
+				// rearrangeTodoId()
+				// 這邊不能重新排列localStorage的id，會讓畫面上的id對不起來
 				saveToJson()
 				loadJson()
 			}
@@ -120,7 +138,7 @@ function deleteTodoObject(deleteBtn) {
 let editBtnIsEdit = true
 
 function setEditBtnsEvent() {
-	editBtns = document.querySelectorAll('.edit-btn')
+	let editBtns = document.querySelectorAll('.edit-btn')
 	// 幫每個按鈕掛上事件
 	editBtns.forEach(editBtn => {
 		editBtn.onclick = function (e) {
@@ -132,9 +150,17 @@ function setEditBtnsEvent() {
 			let editInput = document.createElement('input')
 			editInput.type = 'text'
 			editInput.classList.add('edit-input', 'form-control', 'border-0', 'border-start', 'p-2', 'flex-grow-1')
-			editInput.value = todoName.innerText
+			editInput.value = todoName.innerHTML
+			// 抓到checkbox
+			let checkbox = editBtn.parentNode.querySelector('.todo-checkbox')
 			// 宣告一個變數去接使用者要更改的值
 			let editedString
+
+			if (editBtn.classList.contains('btn-outline-warning')) {
+				editBtnIsEdit = true
+			} else {
+				editBtnIsEdit = false
+			}
 
 			if (editBtnIsEdit) { // 如果按鈕是Edit狀態
 				// 把input放到畫面上
@@ -146,6 +172,8 @@ function setEditBtnsEvent() {
 				editBtn.classList.add('btn-outline-success')
 				editBtn.innerText = 'Save'
 				editBtnIsEdit = false
+				// 讓checkbox失效
+				checkbox.disabled = true
 			} else { // 如果按鈕是Save狀態
 				// 好像要再取一次畫面上的節點，不能直接拿editInput來用
 				let editInputOnScreen = todoItem.querySelector('.edit-input')
@@ -164,6 +192,8 @@ function setEditBtnsEvent() {
 				editBtn.classList.add('btn-outline-warning')
 				editBtn.innerText = 'Edit'
 				editBtnIsEdit = true
+				// 讓checkbox恢復
+				checkbox.disabled = false
 			}
 			console.log(editBtnIsEdit)
 		}
@@ -180,6 +210,54 @@ function editTodoObject(editBtn, editedString) {
 	todoArr[todoIndex].content = editedString
 }
 
-function changeIsDoneStatus(){
-	
+// function setCheckboxesEvent(){
+// 	let checkboxes = document.querySelectorAll('.todo-checkbox')
+// 	checkboxes.forEach(checkbox =>{
+// 		checkbox.addEventListener()
+// 	})
+// }
+
+const doneTagTemplate = document.querySelector('template').content.querySelector('.done-tag')
+
+function changeIsDoneStatus() {
+	let checkboxes = document.querySelectorAll('.todo-checkbox')
+	checkboxes.forEach(checkbox => {
+		checkbox.onchange = function () {
+			const todoItem = checkbox.parentNode.parentNode
+			const label = todoItem.querySelector('label')
+			let todoItemId = parseInt(checkbox.id.split('-')[1])
+			let todoIndex = todoArr.findIndex(todo => todo.id === todoItemId)
+			const doneTag = doneTagTemplate.cloneNode(true)
+			const editBtn = todoItem.parentNode.querySelector('.edit-btn')
+			console.log('editBtn at checkbox:')
+			console.log(editBtn)
+			if (checkbox.checked) {
+				// 勾選時文字變灰色，加上一個顯示Done的偽元素
+				label.style.color = '#aaa'
+				todoItem.append(doneTag)
+				// 把editBtn禁用
+				editBtn.disabled = true
+				editBtn.classList.remove('btn-outline-warning')
+				editBtn.classList.add('btn-outline-dark')
+				// 修改todoArr並存到localstrage
+				todoArr[todoIndex].isDone = true
+				saveToJson()
+			} else {
+				// 勾選時文字變回黑色，移除顯示Done的偽元素
+				console.log('into else')
+				label.style.color = '#000'
+				const doneTagOnScreen = todoItem.querySelector('.done-tag')
+				if (doneTagOnScreen) {
+					doneTagOnScreen.remove()
+				}
+				// 把editBtn啟用
+				editBtn.disabled = false
+				editBtn.classList.remove('btn-outline-dark')
+				editBtn.classList.add('btn-outline-warning')
+				// 修改todoArr並存到localstrage
+				todoArr[todoIndex].isDone = false
+				saveToJson()
+			}
+		}
+	})
 }
