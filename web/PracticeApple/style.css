@@ -29,8 +29,6 @@ nav img {
 
 .width {
 	max-width: 80%;
-	margin: auto;
-	display: flex;
 }
 
 a {
@@ -51,6 +49,60 @@ a {
 #new-year-ad a {
 	color: #FFF;
 	font-size: 12px;
+}
+
+#floating-info-bar {
+	/* display: block; */
+	padding: 10px 0px;
+	position: sticky;
+	top: 0px;
+	background-color: #FFF;
+	z-index: 1;
+} 
+
+#floating-info-bar>div:first-of-type {
+	display: flex;
+	justify-content: space-between;
+}
+
+#floating-info-bar>div:last-of-type{
+	margin-top: 10px;
+	border-top: 1px #DDD solid;
+	padding: 10px 0px;
+}
+
+#floating-info-bar>div:last-of-type>div {
+	display: flex;
+	flex-direction: row-reverse;
+}
+
+#floating-product-name{
+	font-size: 21px;
+	font-weight: 700;
+}
+
+#floating-price{
+	font-weight: 700;
+	letter-spacing: 1px;
+}
+
+#floating-info-bar img {
+	height: 18px;
+	margin-right: 8px;
+	padding-left: 20px;
+	vertical-align: bottom;
+	border-left: 1px #CCC solid;
+}
+
+#floating-pickup-info{
+	font-size: 14px;
+}
+
+#floating-pickup-info button{
+	background-color: transparent;
+	border: none;
+	color: #198DF1;
+	font-weight: 500;
 }
 
 #title {
@@ -95,7 +147,7 @@ h1 {
 	flex-grow: 1;
 	margin: 0px auto;
 	position: sticky;
-	top: 20px;
+	top: 110px;
 }
 
 .carousel-inner {

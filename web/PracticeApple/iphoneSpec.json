@@ -1,0 +1,32 @@
+{
+	"size": [
+		{
+			"15pro": 36900
+		},
+		{
+			"15promax": 44900
+		}
+	],
+	"color": [
+		"ti",
+		"blue",
+		"white",
+		"black"
+	],
+	"storage": {
+		"15pro": [
+			128,
+			256,
+			512,
+			1024
+		],
+		"15promax": [
+			256,
+			512,
+			1024
+		],
+		"pricedifferentiation":{
+			"128":3500
+		}
+	}
+}
