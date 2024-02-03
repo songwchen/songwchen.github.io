@@ -1,0 +1,56 @@
+:root {
+    --main-color: #4BBE4E;
+    --main-color-hover:#4E9F3E;
+}
+
+body {
+    font-family: 'Helvetica Neue', 'Arial', sans-serif;
+    font-size: 15px;
+}
+
+.width {
+    width: 990px;
+    margin: 0px auto;
+}
+
+a{
+    text-decoration: none;
+}
+
+nav{
+    background-color: var(--main-color);
+}
+
+nav a{
+    color:#fff;
+    padding: 6px 10px;
+}
+
+nav a:hover{
+    background-color: var(--main-color-hover);
+}
+
+nav img{
+    height: 20px;
+}
+
+#nav-search-icon{
+    vertical-align: baseline;
+}
+
+#nav-search-icon::before{
+    content: url('./imgs/magnifier_icon.svg');
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+}
+
+#nav-search-input{
+    border: none;
+    transition: .3s ease;
+}
+
+#nav-search-input:focus{
+    outline: none;
+    width: 110%;
+}
