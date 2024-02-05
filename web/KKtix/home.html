@@ -7,27 +7,124 @@
     <title>KKTIX</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="./reset.css">
     <link href="https://fonts.cdnfonts.com/css/helvetica-neue-5" rel="stylesheet">
     <link rel="stylesheet" href="home_style.css">
 </head>
 
 <body>
-    <nav class="d-flex">
+    <!-- header-nav -->
+    <nav id="header-nav" class="d-flex">
         <div class="width d-flex justify-content-between">
-            <div id="nav-left" class="d-flex align-items-center">
-                <img src="./imgs/nav_logo.png" alt="">
+            <div id="header-nav-left" class="d-flex align-items-center">
+                <a href="" id="header-nav-logo"><img src="./imgs/nav_logo.png" alt=""></a>
                 <a href="">探索活動</a>
-                <div id="nav-search-div">
-                    <i id="nav-search-icon"></i>
-                    <input type="text" id="nav-search-input" placeholder="搜尋活動">
+                <div id="header-nav-search-div" class="d-flex align-items-center">
+                    <img src="./imgs/magnifier_icon.svg" alt="" id="header-nav-magnifier-icon">
+                    <input type="text" id="header-nav-search-input" placeholder="搜尋活動">
                 </div>
             </div>
-            <div id="nav-right" class="d-flex align-items-center">
+            <div id="header-nav-right" class="d-flex align-items-center">
                 <a href="">註冊</a>
                 <a href="">登入</a>
             </div>
         </div>
     </nav>
+    <!-- event-slides -->
+    <section>
+        <div id="event-slides" class="carousel slide">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#event-slides" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#event-slides" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#event-slides" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="./imgs/black1.jpg" class="" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="./imgs/black2.jpg" class="" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="./imgs/black3.jpg" class="" alt="...">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#event-slides" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#event-slides" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </section>
+    <!-- categories -->
+    <section>
+        <div id="categories" class="width d-flex justify-content-evenly align-items-center">
+            <a href="">依興趣找活動</a>
+            <a href=""><img src="./imgs/magnifier_icon.svg" alt="">a</a>
+            <a href=""><img src="./imgs/magnifier_icon.svg" alt="">b</a>
+            <a href=""><img src="./imgs/magnifier_icon.svg" alt="">c</a>
+            <a href=""><img src="./imgs/magnifier_icon.svg" alt="">d</a>
+            <a href=""><img src="./imgs/magnifier_icon.svg" alt="">e</a>
+            <a href=""><img src="./imgs/magnifier_icon.svg" alt="">f</a>
+            <a href="">更多分類</a>
+        </div>
+    </section>
+    <!-- annoucement -->
+    <section>
+        <div id="annoucement" class="width">
+            <ul>
+                <li><img src="./imgs/alert_circle_icon.svg" alt=""><a href="">活動異動公告一覽表</a></li>
+            </ul>
+        </div>
+    </section>
+    <!-- cards -->
+    <section>
+        <div class="cards-wrap width">
+            <h1>讓精彩活動豐富你的每日行事曆</h1>
+            <div id="" class="cards-type-tags d-flex">
+                <a href="" class="cards-type-tags-active">焦點活動</a>
+                <a href="">精選活動</a>
+                <a href="">特色活動</a>
+            </div>
+            <div class="cards">
+                <a href="" class="single-card selling">
+                    <div class="card-name">
+                        <img src="./imgs/black1.jpg" alt="">
+                        <p>2024 BORN NAKED KINO LIVE IN TAIPEI</p>
+                    </div>
+                    <div class="card-info">
+                        <p class="card-event-date">2024/03/10 (日)</p>
+                        <p class="card-ticket-status">開賣中</p>
+                    </div>
+                </a>
+                <a href="" class="single-card sold-out">
+                    <div class="card-name">
+                        <img src="./imgs/black1.jpg" alt="">
+                        <p>2024 BORN NAKED KINO LIVE IN TAIPEI</p>
+                    </div>
+                    <div class="card-info">
+                        <p class="card-event-date">2024/03/10 (日)</p>
+                        <p class="card-ticket-status">檢視活動</p>
+                    </div>
+                </a>
+                <a href="" class="single-card upcoming">
+                    <div class="card-name">
+                        <img src="./imgs/black1.jpg" alt="">
+                        <p>2024 BORN NAKED KINO LIVE IN TAIPEI</p>
+                    </div>
+                    <div class="card-info">
+                        <p class="card-event-date">2024/03/10 (日)</p>
+                        <p class="card-ticket-status">20小時候開賣</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+    <section class="margin-seciton">END</section>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
