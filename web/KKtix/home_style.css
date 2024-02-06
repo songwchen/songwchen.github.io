@@ -162,7 +162,7 @@ a {
     margin-top: 100px;
 }
 
-h1 {
+h2 {
     font-size: 30px;
     font-weight: 700;
     text-align: center;
@@ -291,13 +291,13 @@ h1 {
 
 /* start ----- promote cards ----- */
 
-.h2-wrap {
+.h3-wrap {
     position: relative;
     display: flex;
     flex-direction: column;
 }
 
-.h2-wrap::before {
+.h3-wrap::before {
     content: '';
     display: inline-block;
     position: absolute;
@@ -308,11 +308,14 @@ h1 {
     z-index: -1;
 }
 
-h2 {
+h3 {
     font-size: 26px;
     font-weight: 700;
+}
+
+.h3-wrap h3 {
+    background-color: #fafafa;
     text-align: center;
-    background-color: #fff;
     padding: 0px 20px;
     margin: 0px auto;
 }
@@ -339,7 +342,82 @@ h2 {
     margin-left: 15px;
 }
 
-#more-events-button:hover{
+#more-events-button:hover {
     background-color: #f8f8f8;
     transition: .2s ease;
+}
+
+/* end ----- more events button ----- */
+
+/* start ----- event place ----- */
+
+#event-place-section {
+    background-color: #474A44;
+    padding: 50px 0px;
+}
+
+#event-place-section h3 {
+    color: #999;
+    padding-bottom: 30px;
+}
+
+#event-places {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+#event-places a {
+    margin: 0px 60px;
+}
+
+#event-places img {
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+}
+
+#footer-section {
+    background-color: #323530;
+    padding: 50px 0px;
+}
+
+footer,
+footer a {
+    color: #999;
+}
+
+footer p {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 25px;
+}
+
+footer a {
+    font-size: 14px;
+}
+
+#footer-links {
+    border-bottom: var(--common-border);
+    padding-bottom: 30px;
+}
+
+#footer-links li+li {
+    margin-top: 15px;
+}
+
+.footer-icon-li span {
+    margin-left: 3px;
+}
+
+.footer-icon-a {
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.footer-icon-a+.footer-icon-a {
+    margin-left: 5px;
+}
+
+footer i {
+    color: #eee;
+    font-size: 18px;
 }
