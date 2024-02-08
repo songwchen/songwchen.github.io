@@ -16,24 +16,30 @@
 <body>
     <!-- header-nav -->
     <nav id="header-nav" class="d-flex">
-        <div class="width d-flex justify-content-between">
-            <div id="header-nav-left" class="d-flex align-items-center">
-                <a href="" id="header-nav-logo"><img src="./imgs/nav_logo.png" alt=""></a>
-                <a href="">探索活動</a>
-                <div id="header-nav-search-div" class="d-flex align-items-center">
-                    <img src="./imgs/magnifier_icon.svg" alt="" id="header-nav-magnifier-icon">
-                    <input type="text" id="header-nav-search-input" placeholder="搜尋活動">
-                </div>
+        <input type="checkbox" id="nav-checkbox" class="">
+        <div id="header-nav-wrap" class="width d-flex position-relative">
+            <div id="header-nav-logo-and-menu-button-wrap" class="d-flex align-items-center justify-content-between">
+                <h1><a href="" id="header-nav-logo"><img src="./imgs/nav_logo.png" alt=""></a></h1>
+                <label id="nav-checkbox-label" for="nav-checkbox"></label>
             </div>
-            <div id="header-nav-right" class="d-flex align-items-center">
-                <a href="">註冊</a>
-                <a href="">登入</a>
+            <div id="header-functions" class="">
+                <div id="header-functions-left" class="d-flex align-items-center">
+                    <a href="">探索活動</a>
+                    <div id="header-nav-search-div" class="d-flex align-items-center">
+                        <img src="./imgs/magnifier_icon.svg" alt="" id="header-nav-magnifier-icon">
+                        <input type="text" id="header-nav-search-input" placeholder="搜尋活動">
+                    </div>
+                </div>
+                <div id="header-functions-right" class="d-flex align-items-center">
+                    <a href="">註冊</a>
+                    <a href="">登入</a>
+                </div>
             </div>
         </div>
     </nav>
     <!-- event-slides -->
     <section>
-        <div id="event-slides" class="carousel slide">
+        <div id="event-slides" class="w-100 carousel slide">
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#event-slides" data-bs-slide-to="0" class="active"
                     aria-current="true" aria-label="Slide 1"></button>
@@ -224,6 +230,18 @@
                     </li>
                     <li><a href="">部落格</a></li>
                 </ul>
+            </div>
+            <div id="footer-end" class="width d-flex justify-content-between align-items-baseline">
+                <div>
+                    <img id="footer-logo" src="./imgs/nav_logo.png" alt="">
+                    <span>OOXX娛樂股份有限公司 OOXX ENTERTAINMENT LIMITED</span>
+                </div>
+                <div>
+                    <i class="fa-solid fa-earth-asia"></i>
+                    <a href="" class="footer-lang-active">繁體中文</a>
+                    <a href="">English</a>
+                    <a href="">日本語</a>
+                </div>
             </div>
         </footer>
     </section>
