@@ -25,7 +25,7 @@ a {
 
     /* start ----- MOBILE-header-nav ----- */
 
-    #header-nav-logo-and-menu-button-wrap{
+    #header-nav-logo-and-menu-button-wrap {
         margin: 15px 0px 10px;
     }
 
@@ -59,8 +59,8 @@ a {
         position: relative;
     }
 
-    #nav-checkbox-label::after{
-        content:'';
+    #nav-checkbox-label::after {
+        content: '';
         display: inline-block;
         position: absolute;
         inset: 0;
@@ -177,15 +177,39 @@ a {
     /* end ----- MOBILE-footer ----- */
 }
 
-@media (min-width:900px){
-
-}
-
 /* DESKTOP */
-@media (min-width:768px) {
+@media (min-width:769px) {
+
+    @media (min-width:769px) and (max-width:1150px) {
+        .width {
+            width: 90%;
+        }
+
+        #user-account i{
+            display: inline-block;
+            margin-right: 5px;
+        }
+
+        #user-account span{
+            display: none;
+        }
+    }
+
+    @media (min-width:1151px) {
+        .width {
+            width: 75%;
+        }
+
+        #user-account i{
+            display: none;
+        }
+
+        #user-account span{
+            display: inline-block;
+        }
+    }
+
     .width {
-        width: 75%;
-        min-width: 850px;
         max-width: 1200px;
         margin: 0px auto;
     }
@@ -218,8 +242,24 @@ a {
         padding: 13px 20px;
     }
 
-    #header-nav-search-div{
+    #header-nav-search-div {
         margin-left: 10px;
+    }
+
+    #header-nav .dropdown-menu p{
+        padding: 13px 15px 5px;
+        font-weight: 700;
+    }
+
+    #header-nav .dropdown-menu img{
+        height: 65px;
+        width: 65px;
+        border-radius: 50%;
+        margin: 0 auto 10px auto;
+    }
+
+    #user-name{
+        text-align: center;
     }
 
     /* end ----- DESKTOP-header-nav ----- */
@@ -231,6 +271,11 @@ a {
         display: flex;
         justify-content: space-evenly;
         align-items: center;
+    }
+
+    #categories a:first-of-type,
+    #categories a:last-of-type {
+        padding: 0px 10px;
     }
 
     /* end ----- DESKTOP-categories ----- */
@@ -331,7 +376,7 @@ h1 {
 
 #header-nav-search-input {
     border: none;
-    width: 200px;
+    width: 150px;
     height: 40px;
     transition: .3s ease;
 }
@@ -339,6 +384,19 @@ h1 {
 #header-nav-search-input:focus {
     outline: none;
     width: 220px;
+}
+
+#header-nav .dropdown-item {
+    width: 300px;
+    color: #333;
+}
+
+#header-nav .dropdown-item:hover {
+    background-color: #ddd;
+}
+
+#header-functions-right i{
+    margin-right: 10px;
 }
 
 /* end ----- header-nav ----- */
