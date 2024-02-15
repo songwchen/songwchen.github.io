@@ -25,6 +25,10 @@ a {
 
     /* start ----- MOBILE-header-nav ----- */
 
+    #header-functions-right li a {
+        padding: 13px 20px;
+    }
+
     #header-nav-logo-and-menu-button-wrap {
         margin: 15px 0px 10px;
     }
@@ -182,15 +186,19 @@ a {
 
     @media (min-width:769px) and (max-width:1150px) {
         .width {
-            width: 90%;
+            width: 95%;
         }
 
-        #user-account i{
+        #header-nav a {
+            padding: 13px 10px;
+        }
+
+        #user-account i {
             display: inline-block;
             margin-right: 5px;
         }
 
-        #user-account span{
+        #user-account span {
             display: none;
         }
     }
@@ -200,11 +208,15 @@ a {
             width: 75%;
         }
 
-        #user-account i{
+        #header-nav a {
+            padding: 13px 20px;
+        }
+
+        #user-account i {
             display: none;
         }
 
-        #user-account span{
+        #user-account span {
             display: inline-block;
         }
     }
@@ -236,30 +248,6 @@ a {
     #header-functions-right {
         display: flex;
         align-items: center;
-    }
-
-    #header-nav a {
-        padding: 13px 20px;
-    }
-
-    #header-nav-search-div {
-        margin-left: 10px;
-    }
-
-    #header-nav .dropdown-menu p{
-        padding: 13px 15px 5px;
-        font-weight: 700;
-    }
-
-    #header-nav .dropdown-menu img{
-        height: 65px;
-        width: 65px;
-        border-radius: 50%;
-        margin: 0 auto 10px auto;
-    }
-
-    #user-name{
-        text-align: center;
     }
 
     /* end ----- DESKTOP-header-nav ----- */
@@ -337,6 +325,18 @@ a {
     }
 
     /* end ----- DESKTOP-footer ----- */
+
+    /* start ----- DESKTOP-event-search ----- */
+
+    #event-search {
+        justify-content: space-between;
+        align-items: center;
+        gap: 50px;
+    }
+
+    #filter-time-wrap {
+        padding-left: 20px;
+    }
 }
 
 /* start ----- header-nav ----- */
@@ -376,14 +376,14 @@ h1 {
 
 #header-nav-search-input {
     border: none;
-    width: 150px;
+    width: 110px;
     height: 40px;
     transition: .3s ease;
 }
 
 #header-nav-search-input:focus {
     outline: none;
-    width: 220px;
+    width: 130px;
 }
 
 #header-nav .dropdown-item {
@@ -395,9 +395,30 @@ h1 {
     background-color: #ddd;
 }
 
-#header-functions-right i{
+#header-functions-right i {
     margin-right: 10px;
 }
+
+#header-nav-search-div {
+    margin-left: 10px;
+}
+
+#header-nav .dropdown-menu p {
+    padding: 13px 15px;
+    font-weight: 700;
+}
+
+#header-nav .dropdown-menu img {
+    height: 65px;
+    width: 65px;
+    border-radius: 50%;
+    margin: 0 auto 10px auto;
+}
+
+#user-name {
+    text-align: center;
+}
+
 
 /* end ----- header-nav ----- */
 
@@ -417,19 +438,14 @@ h1 {
 
 #event-slides .carousel-item {
     height: 360px;
+    width: 100%;
     position: relative;
 }
 
 #event-slides .carousel-item img {
-    max-height: 100%;
-    max-width: 100%;
-    width: auto;
-    height: auto;
+    height: 100%;
     position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    inset: 0;
     margin: auto;
 }
 
@@ -474,10 +490,9 @@ h1 {
     color: var(--main-color);
 }
 
-#annoucement img {
-    height: var(--main-font-size);
+#annoucement i {
+    color: var(--main-color);
     padding-right: 10px;
-    vertical-align: bottom;
 }
 
 /* end ----- annoucement ----- */
@@ -742,4 +757,67 @@ footer a {
 
 /* end ----- footer ----- */
 
-/* start ----- RWD ----- */
+/* start ----- slogan ----- */
+
+#events-slogan {
+    color: #fff;
+    background-image: url('https://picsum.photos/600/200/?random=10');
+    background-size: cover;
+    height: 140px;
+    line-height: 140px;
+}
+
+/* end ----- slogan ----- */
+
+/* start ----- event-search ----- */
+
+#event-search {
+    padding: 40px 0px;
+}
+
+#event-search-search-div {
+    height: 40px;
+    background-color: #e8e8e8;
+    flex-grow: 1;
+    border-radius: var(--common-border-radius);
+}
+
+#event-search-search-div i {
+    height: 100%;
+    line-height: 40px;
+
+}
+
+#event-search-search-div input {
+    height: 100%;
+    border: none;
+    background-color: transparent;
+}
+
+#event-search-search-div input:focus {
+    outline: none;
+}
+
+#event-search-filter ul {
+    padding: 0;
+}
+
+#event-search-filter ul a {
+    padding: 15px 0px 15px 20px;
+    border-radius: var(--common-border-radius);
+}
+
+#event-search-filter ul a:hover {
+    background-color: #eee;
+}
+
+#filter-fee,
+#filter-time {
+    color: var(--main-color);
+}
+
+/* end ----- event-search ----- */
+
+/* start ----- events-cards ----- */
+
+/* end ----- events-cards ----- */
