@@ -190,7 +190,7 @@ a {
         }
 
         #header-nav a {
-            padding: 13px 10px;
+            padding: 10px 10px;
         }
 
         #user-account i {
@@ -209,7 +209,7 @@ a {
         }
 
         #header-nav a {
-            padding: 13px 20px;
+            padding: 10px 20px;
         }
 
         #user-account i {
@@ -241,7 +241,7 @@ a {
         align-items: center;
         position: absolute;
         width: 100%;
-        padding-left: 120px;
+        margin-left: 120px;
     }
 
     #header-functions-left,
@@ -364,6 +364,7 @@ h1 {
 
 #header-nav img {
     height: 20px;
+    vertical-align: top;
 }
 
 #header-nav-search-div {
@@ -476,6 +477,11 @@ h1 {
     flex-grow: 1;
     padding: 15px 0px 10px;
     height: 100%;
+}
+
+#categories a:first-of-type,
+#categories a:last-of-type{
+    color: var(--main-color);
 }
 
 /* end ----- categories ----- */
@@ -610,7 +616,7 @@ h2 {
     font-weight: 600;
     color: #fff;
     margin-left: 6px;
-    padding: 6px 7px;
+    padding: 5px 7px;
     border-radius: 0px 5px 5px 0px;
 }
 
