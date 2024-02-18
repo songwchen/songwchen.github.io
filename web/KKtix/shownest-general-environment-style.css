@@ -1,0 +1,61 @@
+:root {
+	--main-green: #3b7555;
+	--dark-green: #1d5545;
+	--light-gray: #ddd;
+	--dark-gray: #888;
+	--main-font-size: 15px;
+	--common-border: 1px #ddd solid;
+	--dark-border: 1px #999EA2 solid;
+	--common-border-radius: 5px;
+}
+
+body {
+	font-family: sans-serif;
+	font-size: var(--main-font-size);
+	background-color: #fafafa;
+}
+
+a {
+	text-decoration: none;
+}
+
+h2 {
+	font-size: 30px;
+	font-weight: 700;
+	text-align: center;
+}
+
+h3 {
+	font-size: 26px;
+	font-weight: 700;
+	text-align: center;
+}
+
+/* MOBILE */
+@media (max-width:768px) {
+	.width {
+		width: 90%;
+		margin: 0px auto;
+	}
+}
+
+/* DESKTOP */
+@media (min-width:769px) {
+
+	@media (min-width:769px) and (max-width:1200px) {
+		.width {
+			width: 90%;
+		}
+	}
+
+	@media (min-width:1201px) {
+		.width {
+			width: 75%;
+		}
+	}
+
+	.width {
+		max-width: 1200px;
+		margin: 0px auto;
+	}
+}
