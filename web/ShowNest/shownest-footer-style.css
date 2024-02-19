@@ -85,9 +85,17 @@
     padding: 50px 0px;
 }
 
-footer,
+footer p,
+footer i,
+footer span,
 footer a {
-    color: #999;
+    color: var(--dark-gray);
+    transition: .2s ease;
+}
+
+footer a:hover{
+    color: var(--light-gray);
+    transition: .2s ease;
 }
 
 footer p {

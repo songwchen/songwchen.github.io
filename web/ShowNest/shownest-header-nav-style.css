@@ -120,10 +120,12 @@
 
 #header-nav a {
     color: #fff;
+    transition: .25s ease;
 }
 
 #header-nav a:hover {
     background-color: var(--dark-green);
+    transition: .25s ease;
 }
 
 h1 {
