@@ -118,6 +118,7 @@
 
         /* end ----- DESKTOP-1200-cards ----- */
     }
+
     /* start ----- DESKTOP-categories ----- */
 
     #categories-section {
@@ -230,9 +231,10 @@
 
 /* start ----- categories ----- */
 
-#categories img {
-    height: 80px;
-    margin-bottom: 10px;
+#categories i {
+    font-size: 60px;
+    color: var(--light-green);
+    padding-bottom: 15px;
 }
 
 #categories a {
