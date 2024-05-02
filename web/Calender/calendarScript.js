@@ -12,7 +12,7 @@ applyClickingFunctionToTodo()
 
 function loadLocalStorage() {
 	const getJsonString = localStorage.getItem('todoListJson')
-	todoList = JSON.parse(getJsonString)
+	todoList = JSON.parse(getJsonString) || []
 	console.log(`JSON parsed, todoList :`)
 	console.log(todoList)
 }
@@ -149,6 +149,10 @@ function createTodoItemAndSubmit(eightDigitsDateForId) {
 	let isIdRepeated = false
 	let todoId
 	let itemDigit = 1
+	console.log('todoList id')
+	console.log(
+		
+	)
 	do {
 		todoId = eightDigitsDateForId + itemDigit.toString()
 		isIdRepeated = todoList.map(item => item.id).some(id => id === todoId)
@@ -181,6 +185,9 @@ function createTodoItemAndSubmit(eightDigitsDateForId) {
 	pTodoItem.innerText = todoTitle.value
 	pTodoItem.setAttribute('todoItem-id', todoId)
 	clickedBlock.append(pTodoItem)
+
+	var modal = bootstrap.Modal.getInstance(document.getElementById('exampleModal'));
+    modal.hide();
 }
 
 // 把todo載入到dayblock
