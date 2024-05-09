@@ -15,7 +15,7 @@
 		<div class="width">
 			<div id="control-btn-and-year-month" class="btn-group d-flex justify-content-between mt-3 mb-5">
 				<button class="btn w-25">↼ PREVIOUS</button>
-				<p id="p-year-month" class="w-100 d-flex justify-content-center align-content-center"></p>
+				<p id="p-year-month" class="w-100 d-flex justify-content-center align-content-center">{{yearAndMonth}}</p>
 				<button class="btn w-25">NEXT ⇀</button>
 			</div>
 			<div id="day-form">
@@ -29,6 +29,11 @@
 					<div>Sat</div>
 				</div>
 				<div id="date-index" class="d-flex flex-wrap">
+					<day-block v-for="day in days" :key="day.dayDate" :class="day.class">
+						<template v-slot:date>
+							<div>{{day.dayDate}}</div>
+						</template>
+					</day-block>
 				</div>
 			</div>
 		</div>
@@ -67,7 +72,6 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
 		crossorigin="anonymous"></script>
-	<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 
 	<script type="text/x-template" id="day-block-template">
 		<div>
@@ -76,6 +80,7 @@
 		</div>
 	</script>
 
+	<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 	<script src="calendarScript.js"></script>
 </body>
 

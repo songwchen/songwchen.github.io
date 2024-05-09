@@ -44,7 +44,7 @@ body {
 }
 
 .this-month-block,
-.filling-block {
+.not-this-month-block {
 	height: 120px;
 }
 
