@@ -29,7 +29,7 @@
 					<div>Sat</div>
 				</div>
 				<div id="date-index" class="d-flex flex-wrap">
-					<day-block v-for="day in days" :key="day.dayDate" :class="day.class">
+					<day-block v-for="day in days" :key="day.dayDate" :class="day.class" data-bs-target="#exampleModal" data-bs-toggle="modal">
 						<template v-slot:date>
 							<div>{{day.dayDate}}</div>
 						</template>
