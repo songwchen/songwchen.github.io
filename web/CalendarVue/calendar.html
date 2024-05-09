@@ -15,7 +15,8 @@
 		<div class="width">
 			<div id="control-btn-and-year-month" class="btn-group d-flex justify-content-between mt-3 mb-5">
 				<button class="btn w-25">↼ PREVIOUS</button>
-				<p id="p-year-month" class="w-100 d-flex justify-content-center align-content-center">{{yearAndMonth}}</p>
+				<p id="p-year-month" class="w-100 d-flex justify-content-center align-content-center">{{yearAndMonth}}
+				</p>
 				<button class="btn w-25">NEXT ⇀</button>
 			</div>
 			<div id="day-form">
@@ -29,46 +30,55 @@
 					<div>Sat</div>
 				</div>
 				<div id="date-index" class="d-flex flex-wrap">
-					<day-block v-for="day in days" :key="day.dayDate" :class="day.class" data-bs-target="#exampleModal" data-bs-toggle="modal">
+					<day-block v-for="day in days" :key="day.id" :class="day.class" @click="getTodoFromModalId(day.id)" data-bs-target="#exampleModal"
+						data-bs-toggle="modal">
 						<template v-slot:date>
 							<div>{{day.dayDate}}</div>
+						</template>
+						<template v-slot:todos>
+							<p v-for="todo in day.todos">
+								{{todo.time}} - {{todo.content}}
+							</p>
 						</template>
 					</day-block>
 				</div>
 			</div>
 		</div>
-	</section>
 
-	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
-					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-				</div>
-				<div class="modal-body">
-					<form>
-						<div class="mb-3">
-							<label for="time-picker" class="col-form-label">Title</label>
-							<input type="time" class="form-control" id="time-picker">
-						</div>
-						<div class="mb-3">
-							<label for="title-text" class="col-form-label">Title</label>
-							<input type="text" class="form-control" id="title-text">
-						</div>
-						<div class="mb-3">
-							<label for="content-text" class="col-form-label">Content</label>
-							<textarea class="form-control" id="content-text"></textarea>
-						</div>
-					</form>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn" data-bs-dismiss="modal">Close</button>
-					<button type="button" class="btn" id="send-message">Add Todo</button>
+		<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<form>
+							<div class="mb-3">
+								<label for="title-text" class="col-form-label">Title</label>
+								<input type="text" class="form-control" id="title-text" v-model="todoFromModal.content">
+							</div>
+							<div class="mb-3">
+								<label for="time-picker" class="col-form-label">Time</label>
+								<input type="time" class="form-control" id="time-picker" v-model="todoFromModal.time">
+							</div>
+							<!-- <div class="mb-3">
+								<label for="content-text" class="col-form-label">Content</label>
+								<textarea class="form-control" id="content-text"></textarea>
+							</div> -->
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn" data-bs-dismiss="modal">Close</button>
+						<button type="button" class="btn" id="send-message" @click="addTodo">Add Todo</button>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+
+	</section>
+
+
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
 		crossorigin="anonymous"></script>
