@@ -12,8 +12,8 @@ const app = Vue.createApp({
 				// 	todos: [fromLocalStorage]
 				// },
 			],
-			todoFromModalId: '',
-			todoFromModal: {
+			todoInModalId: '',
+			todoInModal: {
 				time: '',
 				content: '',
 			},
@@ -26,6 +26,7 @@ const app = Vue.createApp({
 				// 		{ time: '02:50', content: 'bbb' }]
 				// }
 			],
+			isAddingTodo: true,
 		}
 	},
 	methods: {
@@ -36,14 +37,26 @@ const app = Vue.createApp({
 			return JSON.parse(localStorage.getItem('daysInLocalStorage'))
 		},
 		// 拿到被點擊的day-block的id，下面addTodo()要用的
-		getTodoFromModalId(input) {
-			this.todoFromModalId = input
-			console.log(`this.todoFromModalId : ${this.todoFromModalId}`)
+		openModalForAddingTodo(input) {
+			// 確保model裡面的值是空的，不要跟editTodo()衝到
+			this.todoInModal.time = ''
+			this.todoInModal.content = ''
+
+			this.isAddingTodo = true
+			console.log(`this.isAddingTodo : ${this.isAddingTodo}`)
+
+			// 打開modal
+			const todoModalTemplate = document.querySelector('#exampleModal')
+			const todoModal = new bootstrap.Modal(todoModalTemplate)
+			todoModal.show()
+
+			this.todoInModalId = input
+			console.log(`this.todoInModalId : ${this.todoInModalId}`)
 		},
 		addTodo() {
 			// 將todoFromModal推入allTodos
 			// 找找看是否這個日期已經有資料了
-			let singleObjectFromAllTodos = this.allTodos.find(singleObject => singleObject.id == this.todoFromModalId)
+			let singleObjectFromAllTodos = this.allTodos.find(singleObject => singleObject.id == this.todoInModalId)
 
 			console.log('singleObjectFromAllTodos :')
 			console.log(singleObjectFromAllTodos)
@@ -51,17 +64,17 @@ const app = Vue.createApp({
 			// 這個日期已經有資料的話
 			if (singleObjectFromAllTodos) {
 				singleObjectFromAllTodos.todos.push({
-					time: this.todoFromModal.time,
-					content: this.todoFromModal.content,
+					time: this.todoInModal.time,
+					content: this.todoInModal.content,
 				})
 			}
 			// 這個日期沒有資料，創一個新的
 			else {
 				this.allTodos.push({
-					id: this.todoFromModalId,
+					id: this.todoInModalId,
 					todos: [{
-						time: this.todoFromModal.time,
-						content: this.todoFromModal.content,
+						time: this.todoInModal.time,
+						content: this.todoInModal.content,
 					}]
 				})
 			}
@@ -71,7 +84,28 @@ const app = Vue.createApp({
 
 			this.saveToLocalStorage()
 
+			// 清空格子重新render
+			this.days = []
+			this.getDayBlockData
 		},
+		openModalForEditingTodo(e, todo, day) {
+			// 防止冒泡出去，會同時呼叫openModalForAddingTodo(input)那個方法
+			e.stopPropagation()
+
+			// 打開modal
+			const todoModalTemplate = document.querySelector('#exampleModal')
+			const todoModal = new bootstrap.Modal(todoModalTemplate)
+			todoModal.show()
+
+			this.isAddingTodo = false
+			console.log(`this.isAddingTodo : ${this.isAddingTodo}`)
+			console.log(day.id)
+			console.log(todo.time)
+			console.log(todo.content)
+
+			this.todoInModal.time = todo.time
+			this.todoInModal.content = todo.content
+		}
 	},
 	computed: {
 		getYearAndMonthTitle() {
@@ -140,6 +174,7 @@ const app = Vue.createApp({
 		// 驗證block格式
 		console.log('First item of this.days')
 		console.log(this.days[0])
+
 	},
 })
 

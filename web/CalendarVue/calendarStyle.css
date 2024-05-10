@@ -9,8 +9,15 @@ body {
 	font-size: 18px;
 }
 
+section {
+	display: flex;
+	height: 100vh;
+}
+
 .width {
+	min-width: var(--total-width);
 	width: var(--total-width);
+	margin: auto;
 }
 
 #control-btn-and-year-month button {
@@ -63,18 +70,31 @@ body {
 	position: relative;
 }
 
-.this-month-block div{
+.this-month-block div {
 	position: sticky;
 	top: 0;
 	background-color: #f8f8f8;
 	padding: 3px 0px;
 }
 
-.this-month-block p{
-	max-width: 60%;
+.this-month-block p {
+	display: flex;
+	max-width: 80%;
 	background-color: #8BC881;
 	font-size: 16px;
-	padding: 1px 0px;
+	padding: 1px 1px;
+}
+
+.this-month-block p .todo-time {
+	height:25px;
+	flex-shrink: 2;
+	color: #fff;
+	background-color: #296c1f;
+	padding: 0px 6px;
+}
+
+.this-month-block p .todo-content{
+	padding: 0px 6px;
 }
 
 .this-month-block::-webkit-scrollbar {

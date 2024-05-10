@@ -11,7 +11,7 @@
 </head>
 
 <body>
-	<section id="app" class="d-flex justify-content-center align-items-center my-5">
+	<section id="app">
 		<div class="width">
 			<div id="control-btn-and-year-month" class="btn-group d-flex justify-content-between mt-3 mb-5">
 				<button class="btn w-25">↼ PREVIOUS</button>
@@ -30,14 +30,16 @@
 					<div>Sat</div>
 				</div>
 				<div id="date-index" class="d-flex flex-wrap">
-					<day-block v-for="day in days" :key="day.id" :class="day.class" @click="getTodoFromModalId(day.id)" data-bs-target="#exampleModal"
-						data-bs-toggle="modal">
+					<day-block v-for="day in days" :key="day.id" :class="day.class" @click="openModalForAddingTodo(day.id)" >
+						<!-- data-bs-target="#exampleModal" -->
+						<!-- data-bs-toggle="modal" -->
 						<template v-slot:date>
 							<div>{{day.dayDate}}</div>
 						</template>
 						<template v-slot:todos>
-							<p v-for="todo in day.todos">
-								{{todo.time}} - {{todo.content}}
+							<p v-for="todo in day.todos" @click="openModalForEditingTodo($event, todo, day)">
+								<span class="todo-time">{{todo.time}}</span>
+								<span class="todo-content">{{todo.content}}</span>
 							</p>
 						</template>
 					</day-block>
@@ -56,11 +58,11 @@
 						<form>
 							<div class="mb-3">
 								<label for="title-text" class="col-form-label">Title</label>
-								<input type="text" class="form-control" id="title-text" v-model="todoFromModal.content">
+								<input type="text" class="form-control" id="title-text" v-model="todoInModal.content">
 							</div>
 							<div class="mb-3">
 								<label for="time-picker" class="col-form-label">Time</label>
-								<input type="time" class="form-control" id="time-picker" v-model="todoFromModal.time">
+								<input type="time" class="form-control" id="time-picker" v-model="todoInModal.time">
 							</div>
 							<!-- <div class="mb-3">
 								<label for="content-text" class="col-form-label">Content</label>
@@ -70,7 +72,7 @@
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn" data-bs-dismiss="modal">Close</button>
-						<button type="button" class="btn" id="send-message" @click="addTodo">Add Todo</button>
+						<button type="button" class="btn" id="send-message" @click="isAddingTodo ? addTodo : editTodo" data-bs-dismiss="modal">Add Todo</button>
 					</div>
 				</div>
 			</div>
