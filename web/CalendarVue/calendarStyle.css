@@ -106,6 +106,12 @@ section {
 	background-color: #ccc;
 }
 
+.modal-footer button {
+	color: #fff;
+	background-color: #892828;
+	border: none;
+}
+
 .modal-footer :first-child {
 	color: #fff;
 	background-color: #88888a;

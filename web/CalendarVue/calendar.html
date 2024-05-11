@@ -37,7 +37,7 @@
 							<div>{{day.dayDate}}</div>
 						</template>
 						<template v-slot:todos>
-							<p v-for="todo in day.todos" @click="openModalForEditingTodo($event, todo, day)">
+							<p v-for="todo in day.todos" @click="openModalForUpdatingTodo($event, todo, day)">
 								<span class="todo-time">{{todo.time}}</span>
 								<span class="todo-content">{{todo.content}}</span>
 							</p>
@@ -72,7 +72,9 @@
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn" data-bs-dismiss="modal">Close</button>
-						<button type="button" class="btn" id="send-message" @click="isAddingTodo ? addTodo : editTodo" data-bs-dismiss="modal">Add Todo</button>
+						<button v-if="isAddingTodo" type="button" class="btn" id="send-message" @click="addTodo" data-bs-dismiss="modal">Add Todo</button>
+						<button v-if="!isAddingTodo" type="button" class="btn" id="send-message" @click="deleteTodo" data-bs-dismiss="modal">Delete Todo</button>
+						<button v-if="!isAddingTodo" type="button" class="btn" id="send-message" @click="updateTodo" data-bs-dismiss="modal">Update Todo</button>
 					</div>
 				</div>
 			</div>

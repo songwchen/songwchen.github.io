@@ -27,6 +27,10 @@ const app = Vue.createApp({
 				// }
 			],
 			isAddingTodo: true,
+			objectToEdit: {
+				time: '',
+				content: '',
+			}
 		}
 	},
 	methods: {
@@ -38,7 +42,8 @@ const app = Vue.createApp({
 		},
 		// 拿到被點擊的day-block的id，下面addTodo()要用的
 		openModalForAddingTodo(input) {
-			// 確保model裡面的值是空的，不要跟editTodo()衝到
+			// 確保model裡面的值是空的，不要跟updateTodo()衝到
+			this.todoInModalId = ''
 			this.todoInModal.time = ''
 			this.todoInModal.content = ''
 
@@ -88,7 +93,7 @@ const app = Vue.createApp({
 			this.days = []
 			this.getDayBlockData
 		},
-		openModalForEditingTodo(e, todo, day) {
+		openModalForUpdatingTodo(e, todo, day) {
 			// 防止冒泡出去，會同時呼叫openModalForAddingTodo(input)那個方法
 			e.stopPropagation()
 
@@ -103,8 +108,53 @@ const app = Vue.createApp({
 			console.log(todo.time)
 			console.log(todo.content)
 
+			// 讓modal的input框顯示todo原本的資訊
+			this.todoInModalId = day.id
 			this.todoInModal.time = todo.time
 			this.todoInModal.content = todo.content
+
+			// 同時把要原本的todo資訊暫存到一個物件上，讓modal的資訊被修改也不影響查詢
+			this.objectToEdit.time = todo.time
+			this.objectToEdit.content = todo.content
+
+			console.log(`this.objectToEdit :`)
+			console.log(this.objectToEdit)
+		},
+		updateTodo() {
+			console.log('updateTodo()')
+			
+
+			// 找到對應的那筆todo
+			let editingTodo = (this.allTodos.find(todo => todo.id === this.todoInModalId)).todos.find(todo => todo.time == this.objectToEdit.time && todo.content == this.objectToEdit.content)
+
+			console.log(editingTodo)
+
+			// 把新的值給對應的那筆todo
+			editingTodo.time = this.todoInModal.time
+			editingTodo.content = this.todoInModal.content
+
+			this.saveToLocalStorage()
+
+			// 清空格子重新render
+			this.days = []
+			this.getDayBlockData
+
+		},
+		deleteTodo() {
+			console.log('deleteTodo()')
+
+			// 找到對應的那筆todo所在的陣列
+			let deletingTodoArray = (this.allTodos.find(todo => todo.id === this.todoInModalId)).todos
+			// 找到對應的那筆todo在陣列的第幾個
+			let deletingTodoIndex = deletingTodoArray.findIndex(todo => todo.time == this.objectToEdit.time && todo.content == this.objectToEdit.content)
+			// 用splice刪除掉
+			deletingTodoArray.splice(deletingTodoIndex, 1)
+
+			this.saveToLocalStorage()
+
+			// 清空格子重新render
+			this.days = []
+			this.getDayBlockData
 		}
 	},
 	computed: {
@@ -154,9 +204,6 @@ const app = Vue.createApp({
 				// 將日期+1。繼續跑迴圈
 				startingDateOfCalendar.setDate(startingDateOfCalendar.getDate() + 1)
 			}
-
-			console.log('this.days in getDayBlockData() :')
-			console.log(this.days)
 		}
 	},
 	mounted() {
@@ -174,7 +221,6 @@ const app = Vue.createApp({
 		// 驗證block格式
 		console.log('First item of this.days')
 		console.log(this.days[0])
-
 	},
 })
 
