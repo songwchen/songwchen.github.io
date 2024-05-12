@@ -42,14 +42,11 @@ const app = Vue.createApp({
 
 			// 拿到本月1號是星期幾
 			let startingDateOfMonth = new Date(new Date(this.currentDate).setDate(1))
-			console.log(`startingDateOfMonth : ${startingDateOfMonth}`)
 			let startingDayOfMonth = startingDateOfMonth.getDay()
 
 			// 計算出第一個格子的日期，並用於後面的while迴圈持續加一天
 			let startingDateOfCalendar =
 				new Date(new Date(startingDateOfMonth).setDate(1 - startingDayOfMonth))
-			console.log(`this.currentDate : ${this.currentDate}`)
-			console.log(`startingDateOfCalendar : ${startingDateOfCalendar}`)
 
 			// 拿到這個月的最後一天
 			let lastDateOfCurrentMonth = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth() + 1, 0)
@@ -89,9 +86,6 @@ const app = Vue.createApp({
 				// 將日期+1。繼續跑迴圈
 				startingDateOfCalendar.setDate(startingDateOfCalendar.getDate() + 1)
 			}
-
-			console.log('this.days :')
-			console.log(this.days)
 		},
 		prevMonth() {
 			this.currentDate.setMonth(this.currentDate.getMonth() - 1)
@@ -117,13 +111,12 @@ const app = Vue.createApp({
 		},
 		// 拿到被點擊的day-block的id，下面addTodo()要用的
 		openModalForAddingTodo(input) {
+
 			// 確保model裡面的值是空的，不要跟updateTodo()衝到
 			this.todoInModalId = ''
 			this.todoInModal.time = ''
 			this.todoInModal.content = ''
-
 			this.isAddingTodo = true
-			console.log(`this.isAddingTodo : ${this.isAddingTodo}`)
 
 			// 打開modal
 			const todoModalTemplate = document.querySelector('#exampleModal')
@@ -131,15 +124,12 @@ const app = Vue.createApp({
 			todoModal.show()
 
 			this.todoInModalId = input
-			console.log(`this.todoInModalId : ${this.todoInModalId}`)
+
 		},
 		addTodo() {
-			// 將todoFromModal推入allTodos
+
 			// 找找看是否這個日期已經有資料了
 			let singleObjectFromAllTodos = this.allTodos.find(singleObject => singleObject.id == this.todoInModalId)
-
-			console.log('singleObjectFromAllTodos :')
-			console.log(singleObjectFromAllTodos)
 
 			// 這個日期已經有資料的話
 			if (singleObjectFromAllTodos) {
@@ -159,14 +149,11 @@ const app = Vue.createApp({
 				})
 			}
 
-			console.log('this.allTodos in addTodo()')
-			console.log(this.allTodos)
-
 			this.saveToLocalStorage()
-
 			this.reRender()
 		},
 		openModalForUpdatingTodo(e, todo, day) {
+
 			// 防止冒泡出去，會同時呼叫openModalForAddingTodo(input)那個方法
 			e.stopPropagation()
 
@@ -176,10 +163,6 @@ const app = Vue.createApp({
 			todoModal.show()
 
 			this.isAddingTodo = false
-			console.log(`this.isAddingTodo : ${this.isAddingTodo}`)
-			console.log(day.id)
-			console.log(todo.time)
-			console.log(todo.content)
 
 			// 讓modal的input框顯示todo原本的資訊
 			this.todoInModalId = day.id
@@ -190,17 +173,13 @@ const app = Vue.createApp({
 			this.objectToEdit.time = todo.time
 			this.objectToEdit.content = todo.content
 
-			console.log(`this.objectToEdit :`)
-			console.log(this.objectToEdit)
+
+
 		},
 		updateTodo() {
-			console.log('updateTodo()')
-
 
 			// 找到對應的那筆todo
 			let editingTodo = (this.allTodos.find(todo => todo.id === this.todoInModalId)).todos.find(todo => todo.time == this.objectToEdit.time && todo.content == this.objectToEdit.content)
-
-			console.log(editingTodo)
 
 			// 把新的值給對應的那筆todo
 			editingTodo.time = this.todoInModal.time
@@ -211,7 +190,6 @@ const app = Vue.createApp({
 			this.reRender()
 		},
 		deleteTodo() {
-			console.log('deleteTodo()')
 
 			// 找到對應的那筆todo所在的陣列
 			let deletingTodoArray = (this.allTodos.find(todo => todo.id === this.todoInModalId)).todos
@@ -229,20 +207,15 @@ const app = Vue.createApp({
 
 	},
 	mounted() {
-		console.log(`this.currentDate : ${this.currentDate}`)
+
 		// 設定行事曆年份月份標題
 		this.getYearAndMonthTitle()
 
 		// 把todos從local storage拿出來放到this.allTodos
 		this.allTodos = this.loadFromLocalStorage() || []
-		console.log('this.allTodos in mounted')
-		console.log(this.allTodos)
 
 		// 產生每天的block
 		this.getDayBlockData()
-		// 驗證block格式
-		console.log('First item of this.days')
-		console.log(this.days[0])
 	},
 })
 
