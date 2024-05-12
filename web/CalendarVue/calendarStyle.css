@@ -17,7 +17,7 @@ section {
 .width {
 	min-width: var(--total-width);
 	width: var(--total-width);
-	margin: auto;
+	margin: 15px auto 0px;
 }
 
 #control-btn-and-year-month button {
@@ -50,18 +50,8 @@ section {
 	border: none;
 }
 
-.this-month-block,
-.not-this-month-block {
+.day-block {
 	height: 120px;
-}
-
-.this-month-block:hover {
-	cursor: pointer;
-}
-
-.this-month-block {
-	background-color: #f8f8f8;
-	border: 1px #eee solid;
 	box-sizing: border-box;
 	overflow: auto;
 	display: flex;
@@ -70,40 +60,71 @@ section {
 	position: relative;
 }
 
-.this-month-block div {
-	position: sticky;
-	top: 0;
+.this-month-block {
 	background-color: #f8f8f8;
-	padding: 3px 0px;
-}
-
-.this-month-block p {
-	display: flex;
-	max-width: 80%;
-	background-color: #8BC881;
-	font-size: 16px;
-	padding: 1px 1px;
-}
-
-.this-month-block p .todo-time {
-	height:25px;
-	flex-shrink: 2;
-	color: #fff;
-	background-color: #296c1f;
-	padding: 0px 6px;
-}
-
-.this-month-block p .todo-content{
-	padding: 0px 6px;
-}
-
-.this-month-block::-webkit-scrollbar {
-	width: 0;
+	border: 1px #eee solid;
 }
 
 .not-this-month-block {
 	color: #eee;
 	background-color: #ccc;
+}
+
+.day-block:hover {
+	cursor: pointer;
+}
+
+.day-block div{
+	position: sticky;
+	top: 0;
+	padding: 3px 0px;
+}
+
+.this-month-block div {
+	background-color: #f8f8f8;
+}
+
+.not-this-month-block div {
+	background-color: #ccc;
+}
+
+.day-block p{
+	display: flex;
+	max-width: 80%;
+	font-size: 16px;
+	padding: 1px 1px;
+}
+
+.this-month-block p {
+	background-color: #8BC881;
+}
+
+.not-this-month-block p {
+	background-color: #aaa;
+}
+
+.day-block p .todo-time{
+	height: 25px;
+	flex-shrink: 2;
+	padding: 0px 6px;
+}
+
+.this-month-block p .todo-time {
+	color: #fff;
+	background-color: #296c1f;
+}
+
+.not-this-month-block p .todo-time{
+	color: #fff;
+	background-color: #888;
+}
+
+.day-block p .todo-content {
+	padding: 0px 6px;
+}
+
+.day-block::-webkit-scrollbar {
+	width: 0;
 }
 
 .modal-footer button {

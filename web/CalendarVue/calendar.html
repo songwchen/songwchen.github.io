@@ -14,10 +14,10 @@
 	<section id="app">
 		<div class="width">
 			<div id="control-btn-and-year-month" class="btn-group d-flex justify-content-between mt-3 mb-5">
-				<button class="btn w-25">↼ PREVIOUS</button>
+				<button @click="prevMonth" class="btn w-25">↼ PREVIOUS</button>
 				<p id="p-year-month" class="w-100 d-flex justify-content-center align-content-center">{{yearAndMonth}}
 				</p>
-				<button class="btn w-25">NEXT ⇀</button>
+				<button @click="nextMonth" class="btn w-25">NEXT ⇀</button>
 			</div>
 			<div id="day-form">
 				<div id="week-name" class="d-flex flex-wrap">
@@ -30,7 +30,7 @@
 					<div>Sat</div>
 				</div>
 				<div id="date-index" class="d-flex flex-wrap">
-					<day-block v-for="day in days" :key="day.id" :class="day.class" @click="openModalForAddingTodo(day.id)" >
+					<day-block v-for="day in days" :key="day.id" class = "day-block" :class="day.class" @click="openModalForAddingTodo(day.id)" >
 						<!-- data-bs-target="#exampleModal" -->
 						<!-- data-bs-toggle="modal" -->
 						<template v-slot:date>
